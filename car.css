@@ -1,0 +1,272 @@
+    :root {
+      --escuro: #101828;
+      --azul: #1677ff;
+      --claro: #f5f7fb;
+      --texto: #344054;
+      --branco: #ffffff;
+      --sucesso: #12b76a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: var(--claro);
+      color: var(--texto);
+    }
+
+    header {
+      background: var(--escuro);
+      color: white;
+      padding: 18px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: var(--azul);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #9cc7ff;
+    }
+
+    .hero {
+      min-height: 480px;
+      padding: 80px 8%;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(16, 24, 40, 0.92), rgba(16, 24, 40, 0.35)),
+        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 620px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--azul);
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #075fdd;
+      transform: translateY(-2px);
+    }
+
+    .filtros {
+      background: white;
+      margin: -35px 8% 50px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      position: relative;
+    }
+
+    .filtros h2 {
+      margin-bottom: 18px;
+      color: var(--escuro);
+    }
+
+    .campos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 12px;
+    }
+
+    select, input {
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 7px;
+      font-size: 15px;
+      width: 100%;
+    }
+
+    section {
+      padding: 25px 8% 65px;
+    }
+
+    .titulo-secao {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .titulo-secao h2 {
+      color: var(--escuro);
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .carros {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(16, 24, 40, 0.09);
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .card-conteudo {
+      padding: 20px;
+    }
+
+    .card h3 {
+      color: var(--escuro);
+      margin-bottom: 8px;
+      font-size: 21px;
+    }
+
+    .detalhes {
+      color: #667085;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .preco {
+      color: var(--sucesso);
+      font-weight: bold;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .beneficios {
+      background: var(--escuro);
+      color: white;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      text-align: center;
+      padding: 55px 8%;
+    }
+
+    .beneficio h3 {
+      margin: 14px 0 8px;
+      font-size: 20px;
+    }
+
+    .icone {
+      font-size: 38px;
+    }
+
+    .contato {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
+    }
+
+    .contato form {
+      display: grid;
+      gap: 14px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      border: 1px solid #d0d5dd;
+      border-radius: 7px;
+      padding: 13px;
+      font-size: 15px;
+    }
+
+    footer {
+      background: #0b1220;
+      color: #d0d5dd;
+      text-align: center;
+      padding: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .carros,
+      .beneficios {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .campos {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .carros,
+      .beneficios,
+      .campos {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 420px;
+      }
+
+      .filtros {
+        margin: -25px 5% 35px;
+      }
+    }
