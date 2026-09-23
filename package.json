@@ -1,0 +1,24 @@
+{
+  "name": "nexalogic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "car.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drarthurmateus-a11y/nexalogic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drarthurmateus-a11y/nexalogic/issues"
+  },
+  "homepage": "https://github.com/drarthurmateus-a11y/nexalogic#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
