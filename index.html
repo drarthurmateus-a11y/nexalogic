@@ -3,16 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lucena cars| Seu próximo carro está aqui</title>
+  <meta name="description" content="Lucena Cars: veículos novos e seminovos com segurança, qualidade e excelentes condições.">
+  <title>Lucena Cars | Seu próximo carro está aqui</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="car.css">
 </head>
 
 <body>
   <header>
-    <div class="logo">Auto<span>Viva</span></div>
-    <nav>
+    <a class="logo" href="#inicio">Lucena<span>Cars</span></a>
+
+    <button class="menu-toggle" id="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="menu">
       <a href="#inicio">Início</a>
       <a href="#carros">Carros</a>
+      <a href="#beneficios">Vantagens</a>
       <a href="#contato">Contato</a>
     </nav>
   </header>
@@ -20,14 +30,19 @@
   <main>
     <section class="hero" id="inicio">
       <div class="hero-content">
+        <p class="marca">Lucena Cars</p>
         <h1>Encontre o carro ideal para você.</h1>
         <p>Carros novos e seminovos revisados, com segurança, qualidade e condições especiais de financiamento.</p>
-        <a class="btn" href="#carros">Ver veículos</a>
+        <div class="hero-acoes">
+          <a class="btn" href="#carros">Ver veículos</a>
+          <a class="btn btn-secundario" href="#contato">Falar com consultor</a>
+        </div>
       </div>
     </section>
 
     <div class="filtros">
       <h2>Busque seu veículo</h2>
+
       <div class="campos">
         <select>
           <option>Marca</option>
@@ -61,72 +76,74 @@
           <option>R$ 200.000+</option>
         </select>
 
-        <button class="btn" onclick="buscarCarro()">Buscar</button>
+        <button class="btn" type="button" onclick="buscarCarro()">Buscar</button>
       </div>
     </div>
 
     <section id="carros">
       <div class="titulo-secao">
+        <p class="subtitulo">Nosso estoque</p>
         <h2>Veículos em destaque</h2>
-        <p>Confira algumas oportunidades disponíveis.</p>
+        <p>Confira algumas oportunidades disponíveis na Lucena Cars.</p>
       </div>
 
       <div class="carros">
         <article class="card">
-          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=80" alt="Carro sedan vermelho">
+          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=80" alt="BMW 320i Sport GP">
           <div class="card-conteudo">
             <h3>BMW 320i Sport GP</h3>
             <p class="detalhes">2023 · Automático · 35.000 km</p>
             <p class="preco">R$ 289.900</p>
-            <button class="btn" onclick="interesse('BMW 320i Sport GP')">Tenho interesse</button>
+            <button class="btn" type="button" onclick="interesse('BMW 320i Sport GP')">Tenho interesse</button>
           </div>
         </article>
 
         <article class="card">
-          <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=700&q=80" alt="SUV preto">
+          <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=700&q=80" alt="Jeep Compass Limited">
           <div class="card-conteudo">
             <h3>Jeep Compass Limited</h3>
             <p class="detalhes">2024 · Automático · 18.000 km</p>
             <p class="preco">R$ 179.900</p>
-            <button class="btn" onclick="interesse('Jeep Compass Limited')">Tenho interesse</button>
+            <button class="btn" type="button" onclick="interesse('Jeep Compass Limited')">Tenho interesse</button>
           </div>
         </article>
 
         <article class="card">
-          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=700&q=80" alt="Carro esportivo azul">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=700&q=80" alt="Chevrolet Onix Premier">
           <div class="card-conteudo">
             <h3>Chevrolet Onix Premier</h3>
             <p class="detalhes">2023 · Automático · 27.000 km</p>
             <p class="preco">R$ 94.900</p>
-            <button class="btn" onclick="interesse('Chevrolet Onix Premier')">Tenho interesse</button>
+            <button class="btn" type="button" onclick="interesse('Chevrolet Onix Premier')">Tenho interesse</button>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="beneficios">
+    <section class="beneficios" id="beneficios">
       <div class="beneficio">
-        <div class="icone">🛡️</div>
+        <div class="icone">Segurança</div>
         <h3>Compra segura</h3>
-        <p>Todos os veículos passam por avaliação criteriosa.</p>
+        <p>Todos os veículos passam por uma avaliação criteriosa.</p>
       </div>
 
       <div class="beneficio">
-        <div class="icone">💳</div>
-        <h3>Financiamento fácil</h3>
-        <p>Encontre condições que cabem no seu orçamento.</p>
+        <div class="icone">Financiamento</div>
+        <h3>Condições facilitadas</h3>
+        <p>Encontre condições que combinam com seu orçamento.</p>
       </div>
 
       <div class="beneficio">
-        <div class="icone">🚗</div>
-        <h3>Test drive</h3>
+        <div class="icone">Test drive</div>
+        <h3>Conheça o veículo</h3>
         <p>Agende uma visita e conheça seu próximo carro.</p>
       </div>
     </section>
 
     <section id="contato">
       <div class="titulo-secao">
-        <h2>Fale conosco</h2>
+        <p class="subtitulo">Atendimento</p>
+        <h2>Fale com a Lucena Cars</h2>
         <p>Envie sua mensagem e retornaremos em breve.</p>
       </div>
 
@@ -142,10 +159,25 @@
     </section>
   </main>
 
+  <a class="whatsapp" href="https://wa.me/5521999999999?text=Ola%2C%20quero%20saber%20mais%20sobre%20os%20veiculos." target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp</a>
+
   <footer>
-    <p>© 2026 AutoViva. Todos os direitos reservados.</p>
+    <div class="footer-conteudo">
+      <a class="logo" href="#inicio">Lucena<span>Cars</span></a>
+
+      <div class="footer-links">
+        <a href="#inicio">Início</a>
+        <a href="#carros">Carros</a>
+        <a href="#beneficios">Vantagens</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+
+    <div class="footer-final">
+      <p>© 2026 Lucena Cars. Todos os direitos reservados.</p>
+    </div>
   </footer>
 
-<script src="car.js"></script>
+  <script src="car.js"></script>
 </body>
 </html>
