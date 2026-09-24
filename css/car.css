@@ -709,4 +709,115 @@ footer {
   .simulador {
     padding: 24px 18px;
   }
+}.controles-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.botao-card {
+  background: var(--claro);
+  color: var(--escuro);
+  padding: 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.botao-card:hover {
+  border-color: var(--primaria);
+}
+
+.botao-card.selecionado {
+  background: var(--escuro);
+  color: var(--branco);
+  border-color: var(--escuro);
+}
+
+.card-favorito {
+  box-shadow: 0 0 0 2px var(--primaria), 0 4px 16px rgba(16, 24, 40, 0.09);
+}
+
+.comparacao {
+  background: var(--branco);
+}
+
+.comparacao-painel {
+  max-width: 950px;
+  margin: auto;
+  text-align: center;
+}
+
+.comparacao-mensagem {
+  color: var(--texto-claro);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.resultado-comparacao[hidden] {
+  display: none;
+}
+
+.tabela-comparacao {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.tabela-comparacao table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.tabela-comparacao th,
+.tabela-comparacao td {
+  padding: 16px;
+  border: 1px solid #d0d5dd;
+  text-align: center;
+}
+
+.tabela-comparacao thead th {
+  background: var(--escuro);
+  color: var(--branco);
+}
+
+.tabela-comparacao tbody th {
+  background: var(--claro);
+  color: var(--escuro);
+}
+
+.tabela-comparacao td {
+  color: var(--texto);
+}
+
+@media (max-width: 600px) {
+  .controles-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.campo-contato {
+  display: grid;
+  gap: 8px;
+}
+
+.campo-contato span {
+  color: var(--escuro);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.contato-status {
+  min-height: 20px;
+  font-weight: 700;
+}
+
+.contato-status.sucesso {
+  color: var(--sucesso);
+}
+
+.contato-status.erro {
+  color: #d92d20;
 }

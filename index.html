@@ -96,6 +96,54 @@
 
       <p class="sem-resultados" id="sem-resultados" hidden>Nenhum veículo foi encontrado com os filtros selecionados.</p>
     </section>
+
+    <section class="comparacao" id="comparacao">
+  <div class="titulo-secao">
+    <p class="subtitulo">Comparação</p>
+    <h2>Compare seus veículos favoritos</h2>
+    <p>Selecione dois veículos para comparar suas informações.</p>
+  </div>
+
+  <div class="comparacao-painel">
+    <p class="comparacao-mensagem" id="comparacao-mensagem">Selecione dois veículos para iniciar a comparação.</p>
+
+    <div class="resultado-comparacao" id="resultado-comparacao" hidden>
+      <div class="tabela-comparacao">
+        <table>
+          <thead>
+            <tr>
+              <th>Informação</th>
+              <th id="comparacao-nome-um"></th>
+              <th id="comparacao-nome-dois"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <th>Preço</th>
+              <td id="comparacao-preco-um"></td>
+              <td id="comparacao-preco-dois"></td>
+            </tr>
+
+            <tr>
+              <th>Ano</th>
+              <td id="comparacao-ano-um"></td>
+              <td id="comparacao-ano-dois"></td>
+            </tr>
+
+            <tr>
+              <th>Quilometragem</th>
+              <td id="comparacao-quilometragem-um"></td>
+              <td id="comparacao-quilometragem-dois"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="btn btn-limpar" id="limpar-comparacao" type="button">Limpar comparação</button>
+    </div>
+  </div>
+</section>
 <section class="financiamento" id="financiamento">
   <div class="titulo-secao">
     <p class="subtitulo">Planejamento</p>
@@ -180,12 +228,36 @@
 
       <div class="contato">
         <form id="form-contato">
-          <input type="text" placeholder="Seu nome" required>
-          <input type="email" placeholder="Seu e-mail" required>
-          <input type="tel" placeholder="Seu telefone" required>
-          <textarea placeholder="Digite sua mensagem" required></textarea>
-          <button class="btn" type="submit">Enviar mensagem</button>
-        </form>
+  <label class="campo-contato">
+    <span>Nome</span>
+    <input id="contato-nome" name="nome" type="text" placeholder="Seu nome" required>
+  </label>
+
+  <label class="campo-contato">
+    <span>E-mail</span>
+    <input id="contato-email" name="email" type="email" placeholder="Seu e-mail" required>
+  </label>
+
+  <label class="campo-contato">
+    <span>Telefone</span>
+    <input id="contato-telefone" name="telefone" type="tel" placeholder="Seu telefone" required>
+  </label>
+
+  <label class="campo-contato">
+    <span>Veículo de interesse</span>
+    <select id="contato-veiculo" name="veiculoInteresse" required>
+      <option value="">Selecione um veículo</option>
+    </select>
+  </label>
+
+  <label class="campo-contato">
+    <span>Mensagem</span>
+    <textarea id="contato-mensagem" name="mensagem" placeholder="Digite sua mensagem" required></textarea>
+  </label>
+
+  <button class="btn" type="submit">Enviar mensagem</button>
+  <p class="contato-status" id="contato-status" aria-live="polite"></p>
+</form>
       </div>
     </section>
   </main>
@@ -247,6 +319,8 @@
 <script src="js/modulos/catalogo.js"></script>
 <script src="js/modulos/detalhes.js"></script>
 <script src="js/modulos/financiamento.js"></script>
+<script src="js/modulos/favoritos.js"></script>
 <script src="js/modulos/filtros.js"></script>
+<script src="js/modulos/contato.js"></script>
 </body>
 </html>

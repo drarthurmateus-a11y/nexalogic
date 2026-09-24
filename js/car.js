@@ -29,4 +29,4 @@ menu.querySelectorAll("a").forEach((link) => {
   });
 });
 
-formularioContato.addEventListener("submit", enviarFormulario);
+
