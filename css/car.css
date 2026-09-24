@@ -468,3 +468,245 @@ footer {
     flex-direction: column;
   }
 }
+.acoes-card {
+  display: flex;
+  gap: 10px;
+}
+
+.acoes-card .btn {
+  flex: 1;
+}
+
+.btn-detalhes {
+  background: var(--escuro);
+}
+
+.btn-detalhes:hover {
+  background: #344054;
+}
+
+.modal-aberto {
+  overflow: hidden;
+}
+
+.modal-detalhes {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.modal-detalhes[hidden] {
+  display: none;
+}
+
+.modal-fundo {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.8);
+}
+
+.modal-conteudo {
+  background: var(--branco);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: min(900px, 100%);
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow-y: auto;
+}
+
+.modal-imagem {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+}
+
+.modal-informacoes {
+  padding: 42px 32px 32px;
+}
+
+.modal-informacoes h2 {
+  color: var(--escuro);
+  margin-bottom: 8px;
+}
+
+.modal-informacoes h3 {
+  color: var(--escuro);
+  margin: 22px 0 8px;
+}
+
+.modal-preco {
+  color: var(--primaria);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.modal-dados {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.modal-opcionais {
+  padding-left: 20px;
+}
+
+.modal-opcionais li {
+  margin-bottom: 6px;
+}
+
+.modal-acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.modal-acoes .btn {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-whatsapp {
+  background: #16883e;
+}
+
+.btn-whatsapp:hover {
+  background: #107032;
+}
+
+.modal-fechar {
+  background: var(--escuro);
+  color: var(--branco);
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .acoes-card,
+  .modal-acoes {
+    flex-direction: column;
+  }
+
+  .modal-detalhes {
+    padding: 12px;
+  }
+
+  .modal-conteudo {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-imagem {
+    height: 230px;
+    min-height: auto;
+  }
+
+  .modal-informacoes {
+    padding: 28px 20px;
+  }
+
+  .modal-dados {
+    grid-template-columns: 1fr;
+  }
+}
+.financiamento {
+  background: var(--escuro);
+}
+
+.financiamento .titulo-secao h2 {
+  color: var(--branco);
+}
+
+.financiamento .titulo-secao p {
+  color: #d0d5dd;
+}
+
+.financiamento .titulo-secao .subtitulo {
+  color: var(--primaria);
+}
+
+.simulador {
+  background: var(--branco);
+  max-width: 850px;
+  margin: auto;
+  padding: 32px;
+  border-radius: 12px;
+}
+
+.financiamento-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.financiamento-campos label {
+  display: grid;
+  gap: 8px;
+}
+
+.financiamento-campos span {
+  color: var(--escuro);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.financiamento-erro {
+  color: #d92d20;
+  min-height: 20px;
+  margin-top: 16px;
+  font-weight: 700;
+}
+
+.resultado-financiamento {
+  background: var(--claro);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: 8px;
+}
+
+.resultado-financiamento[hidden] {
+  display: none;
+}
+
+.resultado-financiamento div {
+  display: grid;
+  gap: 8px;
+}
+
+.resultado-financiamento span {
+  color: var(--texto-claro);
+  font-size: 14px;
+}
+
+.resultado-financiamento strong {
+  color: var(--escuro);
+  font-size: 22px;
+}
+
+@media (max-width: 600px) {
+  .financiamento-campos,
+  .resultado-financiamento {
+    grid-template-columns: 1fr;
+  }
+
+  .simulador {
+    padding: 24px 18px;
+  }
+}

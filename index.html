@@ -96,6 +96,60 @@
 
       <p class="sem-resultados" id="sem-resultados" hidden>Nenhum veículo foi encontrado com os filtros selecionados.</p>
     </section>
+<section class="financiamento" id="financiamento">
+  <div class="titulo-secao">
+    <p class="subtitulo">Planejamento</p>
+    <h2>Simule seu financiamento</h2>
+    <p>Informe os valores para calcular uma estimativa das parcelas.</p>
+  </div>
+
+  <form class="simulador" id="form-financiamento">
+    <div class="financiamento-campos">
+      <label>
+        <span>Valor do veículo</span>
+        <input id="valor-veiculo" type="number" min="1" step="0.01" placeholder="Exemplo: 100000" required>
+      </label>
+
+      <label>
+        <span>Valor da entrada</span>
+        <input id="valor-entrada" type="number" min="0" step="0.01" value="0" required>
+      </label>
+
+      <label>
+        <span>Quantidade de parcelas</span>
+        <select id="quantidade-parcelas" required>
+          <option value="">Selecione</option>
+          <option value="12">12 parcelas</option>
+          <option value="24">24 parcelas</option>
+          <option value="36">36 parcelas</option>
+          <option value="48">48 parcelas</option>
+          <option value="60">60 parcelas</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Taxa de juros mensal</span>
+        <input id="taxa-juros" type="number" min="0" step="0.01" placeholder="Exemplo: 1.5" required>
+      </label>
+    </div>
+
+    <button class="btn" type="submit">Calcular financiamento</button>
+
+    <p class="financiamento-erro" id="financiamento-erro" aria-live="polite"></p>
+
+    <div class="resultado-financiamento" id="resultado-financiamento" aria-live="polite" hidden>
+      <div>
+        <span>Valor total financiado</span>
+        <strong id="total-financiado"></strong>
+      </div>
+
+      <div>
+        <span>Valor de cada parcela</span>
+        <strong id="valor-parcela"></strong>
+      </div>
+    </div>
+  </form>
+</section>
 
     <section class="beneficios" id="beneficios">
       <div class="beneficio">
@@ -136,6 +190,39 @@
     </section>
   </main>
 
+  <section class="modal-detalhes" id="modal-detalhes" role="dialog" aria-modal="true" aria-labelledby="detalhe-nome" hidden>
+  <div class="modal-fundo" id="modal-fundo"></div>
+
+  <div class="modal-conteudo">
+    <button class="modal-fechar" id="fechar-detalhes" type="button" aria-label="Fechar detalhes">Fechar</button>
+
+    <img class="modal-imagem" id="detalhe-imagem" src="" alt="">
+
+    <div class="modal-informacoes">
+      <h2 id="detalhe-nome"></h2>
+      <p class="modal-preco" id="detalhe-preco"></p>
+
+      <div class="modal-dados">
+        <p><strong>Ano:</strong> <span id="detalhe-ano"></span></p>
+        <p><strong>Quilometragem:</strong> <span id="detalhe-quilometragem"></span></p>
+        <p><strong>Câmbio:</strong> <span id="detalhe-cambio"></span></p>
+        <p><strong>Combustível:</strong> <span id="detalhe-combustivel"></span></p>
+        <p><strong>Cor:</strong> <span id="detalhe-cor"></span></p>
+      </div>
+
+      <h3>Descrição</h3>
+      <p id="detalhe-descricao"></p>
+
+      <h3>Opcionais</h3>
+      <ul class="modal-opcionais" id="detalhe-opcionais"></ul>
+
+      <div class="modal-acoes">
+        <button class="btn" id="interesse-detalhes" type="button">Tenho interesse</button>
+        <a class="btn btn-whatsapp" id="whatsapp-detalhes" href="#" target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
   <a class="whatsapp" href="https://wa.me/5521999999999?text=Ola%2C%20quero%20saber%20mais%20sobre%20os%20veiculos." target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp</a>
 
   <footer>
@@ -158,6 +245,8 @@
 <script src="js/car.js"></script>
 <script src="js/dados/veiculos.js"></script>
 <script src="js/modulos/catalogo.js"></script>
+<script src="js/modulos/detalhes.js"></script>
+<script src="js/modulos/financiamento.js"></script>
 <script src="js/modulos/filtros.js"></script>
 </body>
 </html>
