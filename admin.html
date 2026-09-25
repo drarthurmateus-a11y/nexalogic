@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Painel administrativo | Lucena Cars</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <main class="login" id="area-login">
+    <form class="login-formulario" id="form-login">
+      <a class="logo" href="/">Lucena<span>Cars</span></a>
+      <h1>Painel administrativo</h1>
+      <p>Entre com sua conta de administrador.</p>
+
+      <label>
+        <span>E-mail</span>
+        <input id="login-email" type="email" autocomplete="username" required>
+      </label>
+
+      <label>
+        <span>Senha</span>
+        <input id="login-senha" type="password" autocomplete="current-password" required>
+      </label>
+
+      <button class="botao" type="submit">Entrar</button>
+      <p class="status" id="login-status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <div class="painel" id="area-painel" hidden>
+    <header class="painel-cabecalho">
+      <div>
+        <a class="logo" href="/">Lucena<span>Cars</span></a>
+        <p>Painel administrativo</p>
+      </div>
+
+      <div class="usuario">
+        <span id="usuario-nome"></span>
+        <button class="botao botao-secundario" id="botao-sair" type="button">Sair</button>
+      </div>
+    </header>
+
+    <main class="painel-conteudo">
+      <section class="titulo">
+        <h1>Visão geral</h1>
+        <p>Acompanhe as informações principais da Lucena Cars.</p>
+      </section>
+
+      <section class="resumo">
+        <article class="resumo-card">
+          <span>Veículos disponíveis</span>
+          <strong id="total-disponiveis">0</strong>
+        </article>
+
+        <article class="resumo-card">
+          <span>Veículos vendidos</span>
+          <strong id="total-vendidos">0</strong>
+        </article>
+
+        <article class="resumo-card">
+          <span>Contatos recebidos</span>
+          <strong id="total-contatos">0</strong>
+        </article>
+      </section>
+
+      <p class="status" id="painel-status" aria-live="polite"></p>
+    </main>
+  </div>
+
+  <script src="js/admin/admin.js"></script>
+</body>
+</html>
