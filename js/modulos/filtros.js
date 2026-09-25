@@ -4,7 +4,7 @@ const filtroAno = document.getElementById("filtro-ano");
 const filtroPreco = document.getElementById("filtro-preco");
 const resultadoBusca = document.getElementById("resultado-busca");
 const semResultados = document.getElementById("sem-resultados");
-const cardsVeiculos = document.querySelectorAll(".carros .card");
+let cardsVeiculos = [];
 const botaoBuscar = document.getElementById("botao-buscar");
 const botaoLimpar = document.getElementById("botao-limpar");
 
@@ -36,6 +36,10 @@ function limparFiltros() {
   filtroAno.value = "";
   filtroPreco.value = "";
   filtrarCarros();
+}
+
+function atualizarCardsFiltro() {
+  cardsVeiculos = document.querySelectorAll(".carros .card");
 }
 
 botaoBuscar.addEventListener("click", filtrarCarros);

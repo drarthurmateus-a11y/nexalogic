@@ -82,4 +82,3 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !modalDetalhes.hidden) fecharDetalhes();
 });
 
-adicionarBotoesDetalhes();

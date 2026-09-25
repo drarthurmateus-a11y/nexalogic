@@ -8,7 +8,7 @@ const contatoStatus = document.getElementById("contato-status");
 function carregarVeiculosContato() {
   veiculos.forEach((veiculo) => {
     const opcao = document.createElement("option");
-    opcao.value = veiculo.nome;
+    opcao.value = veiculo.id;
     opcao.textContent = veiculo.nome;
     campoContatoVeiculo.append(opcao);
   });
@@ -21,7 +21,7 @@ async function enviarContato(event) {
     nome: campoContatoNome.value.trim(),
     email: campoContatoEmail.value.trim(),
     telefone: campoContatoTelefone.value.trim(),
-    veiculoInteresse: campoContatoVeiculo.value,
+    veiculoId: Number(campoContatoVeiculo.value),
     mensagem: campoContatoMensagem.value.trim()
   };
 
@@ -54,5 +54,5 @@ async function enviarContato(event) {
   }
 }
 
-carregarVeiculosContato();
+
 formularioContato.addEventListener("submit", enviarContato);

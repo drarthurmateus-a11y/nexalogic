@@ -117,6 +117,3 @@ botaoLimparComparacao.addEventListener("click", () => {
   atualizarBotoesVeiculos();
   mostrarComparacao();
 });
-
-adicionarControlesVeiculos();
-mostrarComparacao();

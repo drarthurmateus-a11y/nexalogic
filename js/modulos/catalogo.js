@@ -46,9 +46,13 @@ function criarCardVeiculo(veiculo) {
   return card;
 }
 
-function carregarCatalogo() {
+async function carregarCatalogo() {
+  const resposta = await fetch("/api/veiculos");
+  if (!resposta.ok) throw new Error("Não foi possível carregar os veículos.");
+
+  const dados = await resposta.json();
+  veiculos.splice(0, veiculos.length, ...dados);
   listaCarros.replaceChildren(...veiculos.map(criarCardVeiculo));
   document.getElementById("resultado-busca").textContent = `${veiculos.length} veículos disponíveis.`;
 }
 
-carregarCatalogo();
