@@ -30,6 +30,7 @@ async function carregarResumo() {
   totalDisponiveis.textContent = resultado.disponiveis;
   totalVendidos.textContent = resultado.vendidos;
   totalContatos.textContent = resultado.contatos;
+  await carregarVeiculosAdmin();
 }
 
 async function verificarSessao() {
@@ -97,4 +98,3 @@ async function sair() {
 
 formularioLogin.addEventListener("submit", entrar);
 botaoSair.addEventListener("click", sair);
-verificarSessao();

@@ -127,6 +127,215 @@ app.get("/api/admin/resumo", protegerAdmin, async (req, res) => {
     return res.status(500).json({ mensagem: "Não foi possível carregar o resumo." });
   }
 });
+function prepararVeiculo(dados) {
+  const camposObrigatorios = [
+    dados.marca,
+    dados.modelo,
+    dados.nome,
+    dados.ano,
+    dados.cambio,
+    dados.combustivel,
+    dados.cor,
+    dados.preco,
+    dados.imagem,
+    dados.descricao
+  ];
+
+  if (camposObrigatorios.some((campo) => String(campo ?? "").trim() === "")) return null;
+
+  const ano = Number(dados.ano);
+  const quilometragem = Number(dados.quilometragem);
+  const preco = Number(dados.preco);
+
+  if (!Number.isInteger(ano) || ano < 1900 || !Number.isFinite(quilometragem) || quilometragem < 0 || !Number.isFinite(preco) || preco <= 0) return null;
+
+  return {
+    marca: dados.marca.trim().toLowerCase(),
+    modelo: dados.modelo.trim().toLowerCase(),
+    nome: dados.nome.trim(),
+    ano,
+    cambio: dados.cambio.trim(),
+    combustivel: dados.combustivel.trim(),
+    cor: dados.cor.trim(),
+    quilometragem,
+    preco,
+    imagem: dados.imagem.trim(),
+    imagemMobile: dados.imagemMobile?.trim() || dados.imagem.trim(),
+    descricao: dados.descricao.trim(),
+    opcionais: Array.isArray(dados.opcionais) ? dados.opcionais.map((item) => item.trim()).filter(Boolean) : [],
+    vendido: Boolean(dados.vendido)
+  };
+}
+
+app.get("/api/admin/veiculos", protegerAdmin, async (req, res) => {
+  try {
+    const resultado = await banco.query(`
+      select id::integer, marca, modelo, nome, ano, cambio, combustivel, cor,
+        quilometragem, preco::float8, imagem, imagem_mobile, descricao, opcionais, vendido
+      from veiculos
+      order by id
+    `);
+
+    return res.json(resultado.rows);
+  } catch (erro) {
+    console.error("Erro ao listar veículos:", erro.message);
+    return res.status(500).json({ mensagem: "Não foi possível listar os veículos." });
+  }
+});
+
+app.post("/api/admin/veiculos", protegerAdmin, async (req, res) => {
+  const veiculo = prepararVeiculo(req.body);
+
+  if (!veiculo) {
+    return res.status(400).json({ mensagem: "Preencha os dados do veículo corretamente." });
+  }
+
+  try {
+    const resultado = await banco.query(`
+      insert into veiculos (
+        marca, modelo, nome, ano, cambio, combustivel, cor, quilometragem,
+        preco, imagem, imagem_mobile, descricao, opcionais, vendido
+      ) values (
+        $1, $2, $3, $4, $5, $6, $7,
+        $8, $9, $10, $11, $12, $13, $14
+      )
+      returning id::integer
+    `, [
+      veiculo.marca,
+      veiculo.modelo,
+      veiculo.nome,
+      veiculo.ano,
+      veiculo.cambio,
+      veiculo.combustivel,
+      veiculo.cor,
+      veiculo.quilometragem,
+      veiculo.preco,
+      veiculo.imagem,
+      veiculo.imagemMobile,
+      veiculo.descricao,
+      veiculo.opcionais,
+      veiculo.vendido
+    ]);
+
+    return res.status(201).json({
+      mensagem: "Veículo cadastrado com sucesso.",
+      id: resultado.rows[0].id
+    });
+  } catch (erro) {
+    console.error("Erro ao cadastrar veículo:", erro.message);
+    return res.status(500).json({ mensagem: "Não foi possível cadastrar o veículo." });
+  }
+});
+
+app.put("/api/admin/veiculos/:id", protegerAdmin, async (req, res) => {
+  const id = Number(req.params.id);
+  const veiculo = prepararVeiculo(req.body);
+
+  if (!Number.isInteger(id) || !veiculo) {
+    return res.status(400).json({ mensagem: "Dados do veículo inválidos." });
+  }
+
+  try {
+    const resultado = await banco.query(`
+      update veiculos set
+        marca = $1,
+        modelo = $2,
+        nome = $3,
+        ano = $4,
+        cambio = $5,
+        combustivel = $6,
+        cor = $7,
+        quilometragem = $8,
+        preco = $9,
+        imagem = $10,
+        imagem_mobile = $11,
+        descricao = $12,
+        opcionais = $13,
+        vendido = $14
+      where id = $15
+      returning id
+    `, [
+      veiculo.marca,
+      veiculo.modelo,
+      veiculo.nome,
+      veiculo.ano,
+      veiculo.cambio,
+      veiculo.combustivel,
+      veiculo.cor,
+      veiculo.quilometragem,
+      veiculo.preco,
+      veiculo.imagem,
+      veiculo.imagemMobile,
+      veiculo.descricao,
+      veiculo.opcionais,
+      veiculo.vendido,
+      id
+    ]);
+
+    if (!resultado.rowCount) {
+      return res.status(404).json({ mensagem: "Veículo não encontrado." });
+    }
+
+    return res.json({ mensagem: "Veículo atualizado com sucesso." });
+  } catch (erro) {
+    console.error("Erro ao atualizar veículo:", erro.message);
+    return res.status(500).json({ mensagem: "Não foi possível atualizar o veículo." });
+  }
+});
+
+app.patch("/api/admin/veiculos/:id/status", protegerAdmin, async (req, res) => {
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id)) {
+    return res.status(400).json({ mensagem: "Veículo inválido." });
+  }
+
+  try {
+    const resultado = await banco.query(
+      "update veiculos set vendido = not vendido where id = $1 returning vendido",
+      [id]
+    );
+
+    if (!resultado.rowCount) {
+      return res.status(404).json({ mensagem: "Veículo não encontrado." });
+    }
+
+    return res.json({
+      mensagem: "Situação atualizada com sucesso.",
+      vendido: resultado.rows[0].vendido
+    });
+  } catch (erro) {
+    console.error("Erro ao alterar situação:", erro.message);
+    return res.status(500).json({ mensagem: "Não foi possível alterar a situação." });
+  }
+});
+
+app.delete("/api/admin/veiculos/:id", protegerAdmin, async (req, res) => {
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id)) {
+    return res.status(400).json({ mensagem: "Veículo inválido." });
+  }
+
+  try {
+    const resultado = await banco.query(
+      "delete from veiculos where id = $1 returning id",
+      [id]
+    );
+
+    if (!resultado.rowCount) {
+      return res.status(404).json({ mensagem: "Veículo não encontrado." });
+    }
+
+    return res.json({ mensagem: "Veículo excluído com sucesso." });
+  } catch (erro) {
+    console.error("Erro ao excluir veículo:", erro.message);
+
+    return res.status(409).json({
+      mensagem: "Este veículo possui registros relacionados e não pode ser excluído."
+    });
+  }
+});
 
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
