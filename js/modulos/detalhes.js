@@ -20,7 +20,8 @@ function abrirDetalhes(id) {
   if (!veiculo) return;
 
   veiculoSelecionado = veiculo;
-  detalheImagem.src = veiculo.imagem;
+  const imagemResponsiva = window.matchMedia("(max-width: 600px)").matches && veiculo.imagem_mobile ? veiculo.imagem_mobile : veiculo.imagem;
+detalheImagem.src = imagemResponsiva;
   detalheImagem.alt = veiculo.nome;
   detalheNome.textContent = veiculo.nome;
   detalhePreco.textContent = formatarPreco(veiculo.preco);

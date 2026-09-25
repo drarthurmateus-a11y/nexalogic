@@ -14,6 +14,8 @@ function formatarQuilometragem(valor) {
 
 function criarCardVeiculo(veiculo) {
   const card = document.createElement("article");
+  const picture = document.createElement("picture");
+  const imagemMobile = document.createElement("source");
   const imagem = document.createElement("img");
   const conteudo = document.createElement("div");
   const nome = document.createElement("h3");
@@ -28,8 +30,13 @@ function criarCardVeiculo(veiculo) {
   card.dataset.ano = veiculo.ano;
   card.dataset.preco = veiculo.preco;
 
+  imagemMobile.media = "(max-width: 600px)";
+  imagemMobile.srcset = veiculo.imagem_mobile || veiculo.imagem;
   imagem.src = veiculo.imagem;
   imagem.alt = veiculo.nome;
+  imagem.loading = "lazy";
+  picture.append(imagemMobile, imagem);
+
   conteudo.className = "card-conteudo";
   nome.textContent = veiculo.nome;
   detalhes.className = "detalhes";
@@ -42,7 +49,7 @@ function criarCardVeiculo(veiculo) {
   botao.addEventListener("click", () => interesse(veiculo.nome));
 
   conteudo.append(nome, detalhes, preco, botao);
-  card.append(imagem, conteudo);
+  card.append(picture, conteudo);
   return card;
 }
 
@@ -55,4 +62,3 @@ async function carregarCatalogo() {
   listaCarros.replaceChildren(...veiculos.map(criarCardVeiculo));
   document.getElementById("resultado-busca").textContent = `${veiculos.length} veículos disponíveis.`;
 }
-
