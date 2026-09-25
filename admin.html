@@ -177,11 +177,36 @@
     </table>
   </div>
 </section>
+<section class="administracao">
+  <div class="secao-cabecalho">
+    <div>
+      <h2>Contatos recebidos</h2>
+      <p>Consulte as mensagens enviadas pelos clientes.</p>
+    </div>
+  </div>
+
+  <div class="tabela-container">
+    <table class="tabela-veiculos tabela-contatos">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Cliente</th>
+          <th>Contato</th>
+          <th>Veículo</th>
+          <th>Mensagem</th>
+        </tr>
+      </thead>
+
+      <tbody id="lista-contatos-admin"></tbody>
+    </table>
+  </div>
+</section>
       <p class="status" id="painel-status" aria-live="polite"></p>
     </main>
   </div>
 
-  <script src="/js/admin/admin.js"></script>
+<script src="/js/admin/admin.js"></script>
+<script src="/js/admin/contatos.js"></script>
 <script src="/js/admin/veiculos.js"></script>
 </body>
 </html>

@@ -373,3 +373,33 @@ input:focus {
     grid-column: 1;
   }
 }
+.tabela-contatos td {
+  vertical-align: top;
+}
+
+.contato-dados {
+  display: grid;
+  gap: 6px;
+}
+
+.contato-dados a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.contato-dados a:hover {
+  color: var(--primaria);
+}
+
+.contato-mensagem {
+  min-width: 260px;
+  max-width: 420px;
+  white-space: normal !important;
+  line-height: 1.5;
+}
+
+.contatos-vazios {
+  color: var(--texto-claro);
+  padding: 28px !important;
+  text-align: center !important;
+}

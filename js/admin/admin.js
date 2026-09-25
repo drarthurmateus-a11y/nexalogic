@@ -31,6 +31,7 @@ async function carregarResumo() {
   totalVendidos.textContent = resultado.vendidos;
   totalContatos.textContent = resultado.contatos;
   await carregarVeiculosAdmin();
+await carregarContatosAdmin();
 }
 
 async function verificarSessao() {

@@ -127,6 +127,23 @@ app.get("/api/admin/resumo", protegerAdmin, async (req, res) => {
     return res.status(500).json({ mensagem: "Não foi possível carregar o resumo." });
   }
 });
+
+app.get("/api/admin/contatos", protegerAdmin, async (req, res) => {
+  try {
+    const resultado = await banco.query(`
+      select c.id::integer, c.nome, c.email, c.telefone, c.mensagem, c.criado_em,
+        v.nome as veiculo
+      from contatos c
+      left join veiculos v on v.id = c.veiculo_id
+      order by c.criado_em desc
+    `);
+
+    return res.json(resultado.rows);
+  } catch (erro) {
+    console.error("Erro ao listar contatos:", erro.message);
+    return res.status(500).json({ mensagem: "Não foi possível listar os contatos." });
+  }
+});
 function prepararVeiculo(dados) {
   const camposObrigatorios = [
     dados.marca,
