@@ -1,0 +1,244 @@
+@media(max-width:1000px){
+    .main-nav{
+        gap:17px;
+    }
+
+    .main-nav a{
+        font-size:15px;
+    }
+
+    .modality-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-grid,
+    .training-grid,
+    .contact-grid,
+    .faq-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .about-photo{
+        min-height:450px;
+    }
+
+    .numbers-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .number-item:nth-child(2){
+        border-right:0;
+    }
+
+    .number-item{
+        border-bottom:1px solid rgba(0,0,0,.15);
+    }
+
+    .plans-grid{
+        grid-template-columns:1fr;
+    }
+
+    .plan-featured{
+        transform:none;
+    }
+
+    .calculator-grid{
+        grid-template-columns:1fr;
+    }
+
+    .team-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:760px){
+    .container{
+        width:min(92%,var(--container-width));
+    }
+
+    .header-inner{
+        min-height:70px;
+    }
+
+    .menu-toggle{
+        display:flex;
+    }
+
+    .main-nav{
+        position:absolute;
+        top:70px;
+        left:0;
+        right:0;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        padding:15px 5%;
+        background:rgba(12,12,12,.98);
+    }
+
+    .main-nav.open{
+        display:flex;
+    }
+
+    .main-nav a{
+        padding:15px 0;
+        border-bottom:1px solid #292929;
+    }
+
+    .header-cta{
+        display:none;
+    }
+
+    .hero{
+        min-height:780px;
+    }
+
+    .hero-content{
+        padding-top:100px;
+    }
+
+    .hero h1{
+        font-size:clamp(52px,17vw,82px);
+    }
+
+    .hero-text{
+        font-size:17px;
+    }
+
+    .hero-bottom{
+        display:none;
+    }
+
+    .section,
+    .section-dark,
+    .training,
+    .team,
+    .faq,
+    .calculators{
+        padding:70px 0;
+    }
+
+    .section-heading{
+        display:block;
+        margin-bottom:40px;
+    }
+
+    .heading-note{
+        margin-top:15px;
+    }
+
+    .modality-grid,
+    .team-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr 1fr;
+        grid-auto-rows:180px;
+    }
+
+    .gallery-large{
+        grid-column:span 2;
+        grid-row:span 1;
+    }
+
+    .training-image{
+        min-height:400px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .copyright{
+        grid-column:auto;
+    }
+
+    .testimonial{
+        padding:30px 45px;
+    }
+
+    .testimonial blockquote{
+        font-size:20px;
+    }
+
+    .slider-arrow{
+        width:38px;
+        height:38px;
+    }
+
+    .contact-form,
+    .calculator,
+    .plan{
+        padding:25px;
+    }
+
+    .plan-modal-box{
+        padding:30px 25px;
+    }
+}
+
+@media(max-width:500px){
+    .brand-name{
+        font-size:21px;
+    }
+
+    .brand-mark{
+        width:37px;
+        height:37px;
+        font-size:20px;
+    }
+
+    .numbers-grid{
+        grid-template-columns:1fr;
+    }
+
+    .number-item{
+        border-right:0;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-large{
+        grid-column:span 1;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .hero-actions .btn{
+        width:100%;
+    }
+
+    .whatsapp-float{
+        right:18px;
+        bottom:18px;
+        min-width:52px;
+        height:52px;
+        padding:0 14px;
+    }
+
+    .whatsapp-float span{
+        display:none;
+    }
+
+    .photo-label{
+        right:15px;
+        left:15px;
+    }
+
+    .price{
+        font-size:62px;
+    }
+}

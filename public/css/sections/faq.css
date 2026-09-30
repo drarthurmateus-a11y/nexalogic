@@ -1,0 +1,52 @@
+.faq{
+    padding:100px 0;
+}
+
+.faq-grid{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:70px;
+}
+
+.faq-intro h2{
+    font-size:clamp(45px,6vw,72px);
+}
+
+.faq-intro > p{
+    margin-top:20px;
+    color:#aaa;
+}
+
+.faq-list details{
+    border-bottom:1px solid #444;
+}
+
+.faq-list summary{
+    position:relative;
+    padding:22px 40px 22px 0;
+    list-style:none;
+    cursor:pointer;
+    font-family:var(--font-title);
+    font-size:23px;
+    font-weight:700;
+}
+
+.faq-list summary::-webkit-details-marker{
+    display:none;
+}
+
+.faq-list summary span{
+    position:absolute;
+    right:0;
+    font-size:28px;
+    font-weight:400;
+}
+
+.faq-list details[open] summary span{
+    transform:rotate(45deg);
+}
+
+.faq-list details p{
+    padding:0 35px 22px 0;
+    color:#aaa;
+}

@@ -1,0 +1,40 @@
+.contact-grid{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:70px;
+}
+
+.contact-copy h2{
+    font-size:clamp(45px,6vw,72px);
+}
+
+.contact-copy > p{
+    margin:20px 0 30px;
+    color:var(--color-muted);
+}
+
+.contact-info{
+    display:grid;
+    gap:15px;
+}
+
+.contact-info div{
+    padding:15px 0;
+    border-bottom:1px solid var(--color-border);
+}
+
+.contact-info span{
+    display:block;
+    margin-bottom:4px;
+    color:var(--color-muted);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.contact-info strong{
+    display:block;
+    font-family:var(--font-title);
+    font-size:20px;
+    text-transform:uppercase;
+}
