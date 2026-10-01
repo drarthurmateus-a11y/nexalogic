@@ -815,93 +815,27 @@
                     </p>
                 </div>
 
-                <div class="faq-list" id="faq-list">
-
-                    <details>
-                        <summary>
-                            Preciso agendar uma avaliação?
-                            <span>+</span>
-                        </summary>
-
-                        <p>
-                            Para a avaliação inicial, recomendamos
-                            agendamento. Assim conseguimos reservar
-                            um horário para você.
-                        </p>
-                    </details>
-
-                    <details>
-                        <summary>
-                            A academia funciona aos domingos?
-                            <span>+</span>
-                        </summary>
-
-                        <p>
-                            Sim. Os horários podem variar em domingos
-                            e feriados; confirme pelo contato antes
-                            de sua visita.
-                        </p>
-                    </details>
-
-                    <details>
-                        <summary>
-                            Existe personal trainer?
-                            <span>+</span>
-                        </summary>
-
-                        <p>
-                            Sim. A academia conta com profissionais
-                            para acompanhamento individual, conforme
-                            disponibilidade e contratação.
-                        </p>
-                    </details>
-
-                    <details>
-                        <summary>
-                            Posso fazer uma aula experimental?
-                            <span>+</span>
-                        </summary>
-
-                        <p>
-                            Sim. Entre em contato para consultar
-                            a disponibilidade de aula experimental.
-                        </p>
-                    </details>
-
-                    <details>
-                        <summary>
-                            Quais documentos são necessários?
-                            <span>+</span>
-                        </summary>
-
-                        <p>
-                            Para cadastro, tenha um documento de
-                            identificação. Menores de idade podem
-                            precisar de autorização do responsável.
-                        </p>
-                    </details>
-
-                    <details>
-                        <summary>
-                            Existem planos sem fidelidade?
-                            <span>+</span>
-                        </summary>
-
-                        <p>
-                            As condições variam conforme o plano e
-                            a campanha vigente. Consulte nossa equipe.
-                        </p>
-                    </details>
-
-                </div>
+                <div
+    class="faq-list"
+    id="faq-list"
+></div>
             </div>
         </section>
 
-        <template id="faq-template">
+       <template id="faq-template">
     <details>
         <summary>
-            <span data-field="question"></span>
-            <span>+</span>
+            <span
+                class="faq-question"
+                data-field="question"
+            ></span>
+
+            <span
+                class="faq-icon"
+                aria-hidden="true"
+            >
+                +
+            </span>
         </summary>
 
         <p data-field="answer"></p>
