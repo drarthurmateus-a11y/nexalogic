@@ -2,7 +2,8 @@ import {
     apiGet,
     apiPost,
     apiPut,
-    apiDelete
+    apiDelete,
+    apiUpload
 } from "../shared/api.js";
 
 let items=[];
@@ -14,6 +15,14 @@ const title=document.querySelector("#content-title");
 const subtitle=document.querySelector("#content-subtitle");
 const description=document.querySelector("#content-description");
 const image=document.querySelector("#content-image");
+const imageFile=
+    document.querySelector("#content-image-file");
+
+const imagePreview=
+    document.querySelector("#content-image-preview");
+
+const imagePreviewImg=
+    document.querySelector("#content-image-preview-img");
 const order=document.querySelector("#content-order");
 const active=document.querySelector("#content-active");
 
@@ -62,6 +71,38 @@ function setField(row,name,value){
 }
 
 function resetForm(){
+
+if(imageFile){
+    imageFile.value="";
+}
+
+updateImagePreview("");
+image?.addEventListener(
+    "input",
+    ()=>{
+        updateImagePreview(
+            image.value.trim()
+        );
+    }
+);
+
+imageFile?.addEventListener(
+    "change",
+    ()=>{
+        const file=
+            imageFile.files?.[0];
+
+        if(!file)return;
+
+        const previewUrl=
+            URL.createObjectURL(file);
+
+        updateImagePreview(
+            previewUrl
+        );
+    }
+);
+    
     form?.reset();
 
     id.value="";
@@ -81,6 +122,9 @@ function editItem(item){
     subtitle.value=item.subtitle||"";
     description.value=item.description||"";
     image.value=item.image_url||"";
+    updateImagePreview(
+    item.image_url||""
+);
     order.value=item.sort_order;
     active.checked=item.active;
 
@@ -165,6 +209,24 @@ function render(){
     });
 }
 
+function updateImagePreview(url){
+    if(
+        !imagePreview||
+        !imagePreviewImg
+    ){
+        return;
+    }
+
+    if(!url){
+        imagePreview.hidden=true;
+        imagePreviewImg.src="";
+        return;
+    }
+
+    imagePreviewImg.src=url;
+    imagePreview.hidden=false;
+}
+
 export async function loadContent(){
     if(!body)return [];
 
@@ -191,23 +253,56 @@ form?.addEventListener(
 
         clearMessage();
 
-        const data={
-            type:type.value,
-            title:title.value.trim(),
-            subtitle:subtitle.value.trim(),
-            description:
-                description.value.trim(),
-            image_url:image.value.trim(),
-            sort_order:Number(order.value),
-            active:active.checked,
-            extra_data:{}
-        };
-
         submit.disabled=true;
+        submit.textContent="Salvando...";
 
         const editing=Boolean(id.value);
 
         try{
+            let imageUrl=
+                image.value.trim();
+
+            const selectedFile=
+                imageFile?.files?.[0];
+
+            if(selectedFile){
+                const formData=
+                    new FormData();
+
+                formData.append(
+                    "image",
+                    selectedFile
+                );
+
+                formData.append(
+                    "type",
+                    type.value
+                );
+
+                const upload=
+                    await apiUpload(
+                        "/api/admin/upload",
+                        formData
+                    );
+
+                imageUrl=
+                    upload.file.url;
+            }
+
+            const data={
+                type:type.value,
+                title:title.value.trim(),
+                subtitle:
+                    subtitle.value.trim(),
+                description:
+                    description.value.trim(),
+                image_url:imageUrl,
+                sort_order:
+                    Number(order.value),
+                active:active.checked,
+                extra_data:{}
+            };
+
             if(editing){
                 await apiPut(
                     `/api/admin/content/${id.value}`,
@@ -220,9 +315,13 @@ form?.addEventListener(
                 );
             }
 
+            const selectedType=
+                data.type;
+
             resetForm();
 
-            type.value=data.type;
+            type.value=
+                selectedType;
 
             await loadContent();
 
@@ -240,10 +339,11 @@ form?.addEventListener(
 
         }finally{
             submit.disabled=false;
+            submit.textContent=
+                "Salvar conteudo";
         }
     }
 );
-
 type?.addEventListener(
     "change",
     ()=>{

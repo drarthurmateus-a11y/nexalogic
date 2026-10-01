@@ -29,6 +29,17 @@ import {
     saveSettings
 } from "../controllers/settings-controller.js";
 
+import {
+    storeImage
+} from "../controllers/storage-controller.js";
+
+import {
+    uploadImageFile
+
+} from "../middleware/upload.js";
+
+
+
 const router=Router();
 
 router.use(requireAdmin);
@@ -59,5 +70,11 @@ router.get(
 router.put(
     "/settings",
     saveSettings
+);
+
+router.post(
+    "/upload",
+    uploadImageFile,
+    storeImage
 );
 export default router;

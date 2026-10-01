@@ -313,3 +313,17 @@
 .admin-form select:focus{
     border-color:var(--color-dark);
 }
+.admin-image-preview{
+    width:100%;
+    max-width:420px;
+    overflow:hidden;
+    border:1px solid var(--color-border);
+    background:var(--color-white);
+}
+
+.admin-image-preview img{
+    width:100%;
+    max-height:240px;
+    display:block;
+    object-fit:cover;
+}

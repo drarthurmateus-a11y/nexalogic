@@ -52,3 +52,35 @@ export function apiDelete(url){
         method:"DELETE"
     });
 }
+
+export async function apiUpload(url,formData){
+    const response=await fetch(
+        url,
+        {
+            method:"POST",
+            body:formData
+        }
+    );
+
+    let data={};
+
+    try{
+        data=await response.json();
+    }catch{
+        data={};
+    }
+
+    if(!response.ok){
+        const error=new Error(
+            data.message||
+            "Erro ao enviar arquivo."
+        );
+
+        error.status=response.status;
+        error.data=data;
+
+        throw error;
+    }
+
+    return data;
+}
