@@ -1,8 +1,13 @@
+import {apiPost} from "../shared/api.js";
+
 function formatPhone(value){
     const numbers=value.replace(/\D/g,"").slice(0,11);
 
     if(numbers.length<=2)return numbers;
-    if(numbers.length<=6)return `(${numbers.slice(0,2)}) ${numbers.slice(2)}`;
+    if(numbers.length<=6){
+        return `(${numbers.slice(0,2)}) ${numbers.slice(2)}`;
+    }
+
     if(numbers.length<=10){
         return `(${numbers.slice(0,2)}) ${numbers.slice(2,6)}-${numbers.slice(6)}`;
     }
@@ -30,6 +35,41 @@ function clearError(field){
     if(small)small.textContent="";
 }
 
+function validateForm(fields){
+    let valid=true;
+
+    fields.forEach(clearError);
+
+    if(fields[0].value.trim().length<2){
+        setError(fields[0],"Informe seu nome.");
+        valid=false;
+    }
+
+    const phoneNumbers=fields[1].value.replace(/\D/g,"");
+
+    if(phoneNumbers.length<10){
+        setError(fields[1],"Informe um telefone válido.");
+        valid=false;
+    }
+
+    if(!validEmail(fields[2].value.trim())){
+        setError(fields[2],"Informe um e-mail válido.");
+        valid=false;
+    }
+
+    if(!fields[3].value){
+        setError(fields[3],"Selecione seu objetivo.");
+        valid=false;
+    }
+
+    if(fields[4].value.trim().length<5){
+        setError(fields[4],"Escreva uma mensagem.");
+        valid=false;
+    }
+
+    return valid;
+}
+
 export function initContact(){
     const form=document.querySelector("#contact-form");
     const name=document.querySelector("#name");
@@ -38,60 +78,72 @@ export function initContact(){
     const goal=document.querySelector("#goal");
     const message=document.querySelector("#message");
     const success=document.querySelector("#form-success");
+    const submit=form?.querySelector('button[type="submit"]');
 
     if(!form||!name||!phone||!email||!goal||!message)return;
+
+    const fields=[name,phone,email,goal,message];
 
     phone.addEventListener("input",()=>{
         phone.value=formatPhone(phone.value);
     });
 
-    [name,phone,email,goal,message].forEach(field=>{
+    fields.forEach(field=>{
         field.addEventListener("input",()=>clearError(field));
         field.addEventListener("change",()=>clearError(field));
     });
 
-    form.addEventListener("submit",event=>{
+    form.addEventListener("submit",async event=>{
         event.preventDefault();
 
-        let valid=true;
+        success?.classList.remove("show");
 
-        [name,phone,email,goal,message].forEach(clearError);
+        if(!validateForm(fields))return;
 
-        if(name.value.trim().length<2){
-            setError(name,"Informe seu nome.");
-            valid=false;
+        if(submit){
+            submit.disabled=true;
+            submit.textContent="Enviando...";
         }
 
-        const phoneNumbers=phone.value.replace(/\D/g,"");
+        try{
+            const response=await apiPost("/api/leads",{
+                name:name.value.trim(),
+                phone:phone.value.trim(),
+                email:email.value.trim(),
+                goal:goal.value,
+                message:message.value.trim()
+            });
 
-        if(phoneNumbers.length<10){
-            setError(phone,"Informe um telefone válido.");
-            valid=false;
-        }
+            if(success){
+                success.textContent=response.message;
+                success.classList.add("show");
+            }
 
-        if(!validEmail(email.value.trim())){
-            setError(email,"Informe um e-mail válido.");
-            valid=false;
-        }
+            form.reset();
 
-        if(!goal.value){
-            setError(goal,"Selecione seu objetivo.");
-            valid=false;
-        }
+        }catch(error){
+            if(error.data?.errors){
+                const errors=error.data.errors;
 
-        if(message.value.trim().length<5){
-            setError(message,"Escreva uma mensagem.");
-            valid=false;
-        }
+                if(errors.name)setError(name,errors.name);
+                if(errors.phone)setError(phone,errors.phone);
+                if(errors.email)setError(email,errors.email);
+                if(errors.goal)setError(goal,errors.goal);
+                if(errors.message)setError(message,errors.message);
+            }
 
-        if(!valid){
-            success?.classList.remove("show");
-            return;
-        }
+            if(success){
+                success.textContent=
+                    error.message||"Nao foi possivel enviar.";
 
-        if(success){
-            success.textContent="Formulário validado com sucesso.";
-            success.classList.add("show");
+                success.classList.add("show");
+            }
+
+        }finally{
+            if(submit){
+                submit.disabled=false;
+                submit.textContent="Enviar mensagem →";
+            }
         }
     });
 }

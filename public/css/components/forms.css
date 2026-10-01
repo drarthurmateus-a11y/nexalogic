@@ -112,3 +112,9 @@
 .form-error{
     border-color:var(--color-danger)!important;
 }
+
+.contact-form button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+}

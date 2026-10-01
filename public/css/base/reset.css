@@ -85,3 +85,21 @@ textarea{
     opacity:1;
     transform:translateY(0);
 }
+
+.error-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:var(--color-black);
+    color:var(--color-white);
+}
+
+.error-page h1{
+    margin-bottom:25px;
+}
+
+.error-page p:not(.eyebrow){
+    max-width:500px;
+    margin-bottom:30px;
+    color:#aaa;
+}
