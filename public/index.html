@@ -198,7 +198,7 @@
                     </p>
                 </div>
 
-                <div class="modality-grid">
+                <div class="modality-grid" id="modalities-grid">
 
                     <article class="modality-card modality-featured reveal">
                         <img
@@ -260,6 +260,23 @@
             </div>
         </section>
 
+        <template id="modality-template">
+    <article class="modality-card">
+        <img src="" alt="">
+
+        <div class="card-content">
+            <span data-field="number"></span>
+
+            <h3 data-field="title"></h3>
+
+            <p data-field="description"></p>
+
+            <a href="#contato">
+                Saiba mais →
+            </a>
+        </div>
+    </article>
+</template>
         <!-- treinamento -->
 
         <section class="training section-dark">
@@ -338,7 +355,7 @@
                     </p>
                 </div>
 
-                <div class="gallery-grid">
+                <div class="gallery-grid" id="gallery-grid" >
 
                     <button
                         class="gallery-item gallery-large reveal"
@@ -408,6 +425,19 @@
             </div>
         </section>
 
+        <template id="gallery-item-template">
+    <button
+        type="button"
+        class="gallery-item"
+    >
+        <img src="" alt="">
+
+        <span>
+            <span data-field="title"></span>
+            <b>↗</b>
+        </span>
+    </button>
+</template>
         <!-- equipe -->
 
         <section class="team section-dark">
@@ -424,7 +454,7 @@
                     </div>
                 </div>
 
-                <div class="team-grid">
+                <div class="team-grid" id="professionals-grid">
 
                     <article class="team-member reveal">
                         <div class="team-photo">
@@ -466,6 +496,17 @@
             </div>
         </section>
 
+        <template id="professional-template">
+    <article class="team-member">
+        <div class="team-photo">
+            <img src="" alt="">
+        </div>
+
+        <p data-field="role"></p>
+
+        <h3 data-field="name"></h3>
+    </article>
+</template>
         <!-- planos -->
 
        <section class="plans section" id="planos">
@@ -721,53 +762,7 @@
                         ←
                     </button>
 
-                    <div class="testimonial-track">
-
-                        <article class="testimonial active">
-                            <span class="quote-mark">“</span>
-
-                            <blockquote>
-                                Comecei sem saber por onde começar
-                                e hoje tenho muito mais disciplina
-                                com meus treinos.
-                            </blockquote>
-
-                            <p>
-                                <strong>André M.</strong>
-                                · aluno há 2 anos
-                            </p>
-                        </article>
-
-                        <article class="testimonial">
-                            <span class="quote-mark">“</span>
-
-                            <blockquote>
-                                O que mais gosto é que consigo treinar
-                                sem sentir que preciso acompanhar o
-                                ritmo de outra pessoa.
-                            </blockquote>
-
-                            <p>
-                                <strong>Juliana R.</strong>
-                                · aluna há 1 ano
-                            </p>
-                        </article>
-
-                        <article class="testimonial">
-                            <span class="quote-mark">“</span>
-
-                            <blockquote>
-                                A estrutura é completa e os profissionais
-                                realmente ajudam quando a gente tem dúvida.
-                            </blockquote>
-
-                            <p>
-                                <strong>Mateus S.</strong>
-                                · aluno há 3 anos
-                            </p>
-                        </article>
-
-                    </div>
+                    <div class="testimonial-track"> </div>
 
                     <button
                         class="slider-arrow next"
@@ -786,6 +781,21 @@
             </div>
         </section>
 
+        <template id="testimonial-template">
+    <article class="testimonial">
+        <span class="quote-mark">
+            “
+        </span>
+
+        <blockquote data-field="text"></blockquote>
+
+        <p>
+            <strong data-field="name"></strong>
+            ·
+            <span data-field="subtitle"></span>
+        </p>
+    </article>
+</template>
         <!-- faq -->
 
         <section class="faq section-dark">
@@ -805,7 +815,7 @@
                     </p>
                 </div>
 
-                <div class="faq-list reveal">
+                <div class="faq-list" id="faq-list">
 
                     <details>
                         <summary>
@@ -887,6 +897,16 @@
             </div>
         </section>
 
+        <template id="faq-template">
+    <details>
+        <summary>
+            <span data-field="question"></span>
+            <span>+</span>
+        </summary>
+
+        <p data-field="answer"></p>
+    </details>
+</template>
         <!-- contato -->
 
         <section class="contact section" id="contato">
@@ -906,32 +926,47 @@
                         uma dúvida? Envie uma mensagem.
                     </p>
 
-                    <div class="contact-info">
+                   <div class="contact-info">
 
-                        <div>
-                            <span>ENDEREÇO</span>
+    <div>
+        <span>ENDEREÇO</span>
 
-                            <strong>
-                                Av. Exemplo, 250 — Centro,
-                                Rio de Janeiro/RJ
-                            </strong>
-                        </div>
+        <strong id="site-address">
+            Av. Exemplo, 250 — Centro,
+            Rio de Janeiro/RJ
+        </strong>
+    </div>
 
-                        <div>
-                            <span>HORÁRIO</span>
+    <div>
+        <span>HORÁRIO</span>
 
-                            <strong>
-                                Seg. a Sex. 06h — 23h<br>
-                                Sáb. 08h — 18h
-                            </strong>
-                        </div>
+        <strong id="site-hours">
+            Seg. a Sex. 06h — 23h
+            Sáb. 08h — 18h
+        </strong>
+    </div>
 
-                        <div>
-                            <span>WHATSAPP</span>
-                            <strong>(21) 99999-0000</strong>
-                        </div>
+    <div>
+        <span>TELEFONE</span>
 
-                    </div>
+        <strong id="site-phone"></strong>
+    </div>
+
+    <div>
+        <span>WHATSAPP</span>
+
+        <strong id="site-whatsapp">
+            (21) 99999-0000
+        </strong>
+    </div>
+
+    <div>
+        <span>E-MAIL</span>
+
+        <strong id="site-email"></strong>
+    </div>
+
+</div>
                 </div>
 
                 <form
@@ -1033,6 +1068,7 @@
 
     <footer class="footer">
         <div class="container footer-grid">
+            
 
             <a href="#inicio" class="brand">
                 <span class="brand-mark">FP</span>
@@ -1053,14 +1089,15 @@
             <span class="copyright">
                 © 2026 Força Prime
             </span>
-
         </div>
+        
     </footer>
 
     <!-- whatsapp -->
 
     <a
         class="whatsapp-float"
+        id="whatsapp-float"
         href="https://wa.me/5521999990000?text=Olá!%20Gostaria%20de%20conhecer%20a%20Força%20Prime."
         target="_blank"
         rel="noopener"

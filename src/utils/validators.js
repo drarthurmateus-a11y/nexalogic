@@ -206,3 +206,88 @@ export function validateContent(data={}){
         }
     };
 }
+function isValidOptionalUrl(value){
+    if(!value)return true;
+
+    try{
+        const url=new URL(value);
+
+        return[
+            "http:",
+            "https:"
+        ].includes(url.protocol);
+
+    }catch{
+        return false;
+    }
+}
+
+export function validateSettings(data={}){
+    const name=cleanText(data.name);
+    const phone=cleanText(data.phone);
+    const whatsapp=cleanText(data.whatsapp);
+    const email=cleanText(data.email).toLowerCase();
+    const address=cleanText(data.address);
+    const instagram=cleanText(data.instagram);
+    const facebook=cleanText(data.facebook);
+    const youtube=cleanText(data.youtube);
+    const businessHours=cleanText(data.business_hours);
+
+    const errors={};
+
+    if(name.length<2||name.length>100){
+        errors.name="Nome invalido.";
+    }
+
+    if(phone.length>40){
+        errors.phone="Telefone invalido.";
+    }
+
+    if(whatsapp){
+        const numbers=onlyNumbers(whatsapp);
+
+        if(numbers.length<10||numbers.length>15){
+            errors.whatsapp="WhatsApp invalido.";
+        }
+    }
+
+    if(email&&(!isValidEmail(email)||email.length>150)){
+        errors.email="Email invalido.";
+    }
+
+    if(address.length>300){
+        errors.address="Endereco muito longo.";
+    }
+
+    if(businessHours.length>500){
+        errors.business_hours="Horario muito longo.";
+    }
+
+    if(!isValidOptionalUrl(instagram)){
+        errors.instagram="Instagram invalido.";
+    }
+
+    if(!isValidOptionalUrl(facebook)){
+        errors.facebook="Facebook invalido.";
+    }
+
+    if(!isValidOptionalUrl(youtube)){
+        errors.youtube="YouTube invalido.";
+    }
+
+    return{
+        valid:Object.keys(errors).length===0,
+        errors,
+        data:{
+            name,
+            phone:phone||null,
+            whatsapp:whatsapp||null,
+            email:email||null,
+            address:address||null,
+            instagram:instagram||null,
+            facebook:facebook||null,
+            youtube:youtube||null,
+            business_hours:businessHours||null
+        }
+    };
+}

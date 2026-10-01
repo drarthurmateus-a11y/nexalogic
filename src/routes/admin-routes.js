@@ -18,7 +18,16 @@ import {
     updateEnrollmentStatus
 } from "../controllers/enrollment-controller.js";
 
-
+import {
+    listContent,
+    storeContent,
+    editContent,
+    removeContent
+} from "../controllers/content-controller.js";
+import {
+    showSettings,
+    saveSettings
+} from "../controllers/settings-controller.js";
 
 const router=Router();
 
@@ -38,5 +47,17 @@ router.put(
     "/enrollments/:id/status",
     updateEnrollmentStatus
 );
+router.get("/content",listContent);
+router.post("/content",storeContent);
+router.put("/content/:id",editContent);
+router.delete("/content/:id",removeContent);
+router.get(
+    "/settings",
+    showSettings
+);
 
+router.put(
+    "/settings",
+    saveSettings
+);
 export default router;

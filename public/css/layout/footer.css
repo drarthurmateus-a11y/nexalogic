@@ -64,3 +64,19 @@
 .whatsapp-float:hover{
     transform:translateY(-4px) scale(1.04);
 }
+.footer-social{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.footer-social a{
+    color:#aaa;
+    font-size:14px;
+    font-weight:600;
+    transition:var(--transition);
+}
+
+.footer-social a:hover{
+    color:var(--color-primary);
+}

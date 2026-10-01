@@ -7,6 +7,12 @@ import {loadLeads} from "./leads.js";
 import {updateDashboard} from "./dashboard.js";
 import {initPlansAdmin} from "./plans.js";
 import {loadEnrollments} from "./enrollments.js";
+import {
+    initContentAdmin
+} from "./content.js";
+import {
+    initSettingsAdmin
+} from "./settings.js";
 
 const reloadEnrollments=
     document.querySelector(
@@ -61,10 +67,27 @@ async function init(){
             error.message
         );
     }
+    try{
+    await initContentAdmin();
+}catch(error){
+    console.error(
+        "Erro ao carregar conteudo:",
+        error.message
+    );
+}
+try{
+    await initSettingsAdmin();
+}catch(error){
+    console.error(
+        "Erro ao carregar configuracoes:",
+        error.message
+    );
+}
     reloadEnrollments?.addEventListener(
     "click",
     loadEnrollments
 );
+
 }
 
 logout?.addEventListener("click",async()=>{

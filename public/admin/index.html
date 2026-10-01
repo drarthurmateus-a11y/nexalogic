@@ -40,6 +40,12 @@
                 Planos
             </a>
 
+            <a href="#content">
+    Conteúdo
+</a>
+<a href="#settings">
+    Configurações
+</a>
             <a href="#enrollments">
     Matrículas
 </a>
@@ -106,6 +112,320 @@
             </article>
 
         </section>
+
+
+<section
+    class="admin-panel"
+    id="content"
+>
+
+    <div class="admin-panel-heading">
+        <div>
+            <p class="eyebrow">
+                SITE
+            </p>
+
+            <h2>Conteúdo</h2>
+        </div>
+    </div>
+
+    <form
+        class="admin-form"
+        id="content-form"
+        novalidate
+    >
+
+        <input
+            type="hidden"
+            id="content-id"
+        >
+
+        <div class="admin-form-grid">
+
+            <label>
+                Tipo
+
+                <select id="content-type">
+                    <option value="modality">
+                        Modalidade
+                    </option>
+
+                    <option value="professional">
+                        Profissional
+                    </option>
+
+                    <option value="gallery">
+                        Galeria
+                    </option>
+
+                    <option value="testimonial">
+                        Depoimento
+                    </option>
+
+                    <option value="faq">
+                        FAQ
+                    </option>
+                </select>
+            </label>
+
+            <label>
+                Título
+
+                <input
+                    type="text"
+                    id="content-title"
+                    maxlength="150"
+                    placeholder="Título"
+                >
+            </label>
+
+            <label>
+                Subtítulo
+
+                <input
+                    type="text"
+                    id="content-subtitle"
+                    maxlength="150"
+                    placeholder="Opcional"
+                >
+            </label>
+
+            <label class="admin-form-full">
+                Descrição
+
+                <textarea
+                    id="content-description"
+                    rows="4"
+                    maxlength="1500"
+                    placeholder="Descrição"
+                ></textarea>
+            </label>
+
+            <label class="admin-form-full">
+                URL da imagem
+
+                <input
+                    type="url"
+                    id="content-image"
+                    placeholder="https://..."
+                >
+            </label>
+
+            <label>
+                Ordem
+
+                <input
+                    type="number"
+                    id="content-order"
+                    min="0"
+                    step="1"
+                    value="0"
+                >
+            </label>
+
+            <label class="admin-checkbox">
+                <input
+                    type="checkbox"
+                    id="content-active"
+                    checked
+                >
+
+                Conteúdo ativo
+            </label>
+
+        </div>
+
+        <div class="admin-form-actions">
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+                id="content-submit"
+            >
+                Salvar conteúdo
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-outline"
+                id="content-cancel"
+                hidden
+            >
+                Cancelar edição
+            </button>
+
+        </div>
+
+        <p
+            class="admin-message"
+            id="content-message"
+        ></p>
+
+    </form>
+
+    <div class="table-wrapper admin-table-spacing">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Título</th>
+                    <th>Subtítulo</th>
+                    <th>Ordem</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="content-table-body"></tbody>
+        </table>
+
+    </div>
+
+</section>
+
+<section
+    class="admin-panel"
+    id="settings"
+>
+
+    <div class="admin-panel-heading">
+        <div>
+            <p class="eyebrow">
+                SITE
+            </p>
+
+            <h2>Configurações</h2>
+        </div>
+    </div>
+
+    <form
+        class="admin-form"
+        id="settings-form"
+        novalidate
+    >
+
+        <div class="admin-form-grid">
+
+            <label>
+                Nome
+
+                <input
+                    type="text"
+                    id="settings-name"
+                    maxlength="100"
+                    placeholder="Força Prime"
+                >
+            </label>
+
+            <label>
+                Telefone
+
+                <input
+                    type="text"
+                    id="settings-phone"
+                    maxlength="40"
+                    placeholder="(21) 0000-0000"
+                >
+            </label>
+
+            <label>
+                WhatsApp
+
+                <input
+                    type="text"
+                    id="settings-whatsapp"
+                    maxlength="40"
+                    placeholder="(21) 99999-9999"
+                >
+            </label>
+
+            <label>
+                E-mail
+
+                <input
+                    type="email"
+                    id="settings-email"
+                    maxlength="150"
+                    placeholder="contato@academia.com"
+                >
+            </label>
+
+            <label class="admin-form-full">
+                Endereço
+
+                <input
+                    type="text"
+                    id="settings-address"
+                    maxlength="300"
+                    placeholder="Endereço da academia"
+                >
+            </label>
+
+            <label>
+                Instagram
+
+                <input
+                    type="url"
+                    id="settings-instagram"
+                    placeholder="https://instagram.com/..."
+                >
+            </label>
+
+            <label>
+                Facebook
+
+                <input
+                    type="url"
+                    id="settings-facebook"
+                    placeholder="https://facebook.com/..."
+                >
+            </label>
+
+            <label>
+                YouTube
+
+                <input
+                    type="url"
+                    id="settings-youtube"
+                    placeholder="https://youtube.com/..."
+                >
+            </label>
+
+            <label class="admin-form-full">
+                Horário de funcionamento
+
+                <textarea
+                    id="settings-hours"
+                    rows="4"
+                    maxlength="500"
+                    placeholder="Seg. a Sex. 06h - 23h"
+                ></textarea>
+            </label>
+
+        </div>
+
+        <div class="admin-form-actions">
+
+            <button
+                class="btn btn-primary"
+                id="settings-submit"
+                type="submit"
+            >
+                Salvar configurações
+            </button>
+
+        </div>
+
+        <p
+            class="admin-message"
+            id="settings-message"
+            role="status"
+        ></p>
+
+    </form>
+
+</section>
 
 <section
     class="admin-panel"
@@ -407,6 +727,44 @@
             </td>
         </tr>
     </template>
+
+<template id="content-row-template">
+    <tr>
+        <td data-field="type"></td>
+
+        <td>
+            <strong data-field="title"></strong>
+        </td>
+
+        <td data-field="subtitle"></td>
+
+        <td data-field="order"></td>
+
+        <td data-field="active"></td>
+
+        <td>
+            <div class="table-actions">
+
+                <button
+                    type="button"
+                    class="table-action"
+                    data-action="edit"
+                >
+                    Editar
+                </button>
+
+                <button
+                    type="button"
+                    class="table-action danger"
+                    data-action="disable"
+                >
+                    Desativar
+                </button>
+
+            </div>
+        </td>
+    </tr>
+</template>
 
 <template id="enrollment-row-template">
     <tr>

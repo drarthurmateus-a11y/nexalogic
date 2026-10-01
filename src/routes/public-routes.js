@@ -3,6 +3,12 @@ import {supabase} from "../config/supabase.js";
 import {storeLead} from "../controllers/lead-controller.js";
 import {listPublicPlans} from "../controllers/plan-controller.js";
 import {storeEnrollment} from "../controllers/enrollment-controller.js";
+import {
+    listPublicContent
+} from "../controllers/content-controller.js";
+import {
+    showSettings
+} from "../controllers/settings-controller.js";
 
 const router=Router();
 
@@ -29,6 +35,13 @@ router.get("/health",async(req,res)=>{
 router.post("/leads",storeLead);
 router.get("/public/plans",listPublicPlans);
 router.post("/enrollments",storeEnrollment);
-
+router.get(
+    "/public/content",
+    listPublicContent
+);
+router.get(
+    "/public/settings",
+    showSettings
+);
 
 export default router;
