@@ -1,0 +1,13 @@
+@import url("./base/variables.css");
+@import url("./base/reset.css");
+@import url("./base/typography.css");
+
+@import url("./components/buttons.css");
+@import url("./components/forms.css");
+@import url("./components/alerts.css");
+@import url("./components/tables.css");
+
+@import url("./pages/admin-login.css");
+@import url("./pages/admin-dashboard.css");
+
+@import url("./responsive/admin.css");

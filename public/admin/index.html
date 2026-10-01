@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+
+    <title>Painel Admin | Força Prime</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body class="admin-page">
+
+    <aside class="admin-sidebar">
+
+        <a href="/" class="admin-sidebar-brand">
+            <span class="brand-mark">FP</span>
+
+            <span>
+                FORÇA
+                <strong>PRIME</strong>
+            </span>
+        </a>
+
+        <nav class="admin-nav">
+            <a href="#dashboard" class="active">
+                Dashboard
+            </a>
+
+            <a href="#plans">
+                Planos
+            </a>
+
+            <a href="#leads">
+                Leads
+            </a>
+        </nav>
+
+        <button
+            type="button"
+            class="admin-logout"
+            id="admin-logout"
+        >
+            Sair
+        </button>
+
+    </aside>
+
+    <main class="admin-content">
+
+        <header class="admin-topbar">
+            <div>
+                <p class="eyebrow">
+                    PAINEL ADMINISTRATIVO
+                </p>
+
+                <h1>Dashboard</h1>
+            </div>
+
+            <div class="admin-user">
+                <span>Logado como</span>
+                <strong id="admin-name">Admin</strong>
+            </div>
+        </header>
+
+        <section
+            class="admin-summary"
+            id="dashboard"
+        >
+
+            <article class="summary-card">
+                <span>Total</span>
+                <strong id="lead-total">0</strong>
+                <p>leads cadastrados</p>
+            </article>
+
+            <article class="summary-card">
+                <span>Novos</span>
+                <strong id="lead-new">0</strong>
+                <p>aguardando contato</p>
+            </article>
+
+            <article class="summary-card">
+                <span>Contatados</span>
+                <strong id="lead-contacted">0</strong>
+                <p>em atendimento</p>
+            </article>
+
+            <article class="summary-card">
+                <span>Fechados</span>
+                <strong id="lead-closed">0</strong>
+                <p>finalizados</p>
+            </article>
+
+        </section>
+
+        <section
+            class="admin-panel"
+            id="plans"
+        >
+
+            <div class="admin-panel-heading">
+                <div>
+                    <p class="eyebrow">
+                        GERENCIAMENTO
+                    </p>
+
+                    <h2>Planos</h2>
+                </div>
+            </div>
+
+            <form
+                class="admin-form"
+                id="plan-form"
+                novalidate
+            >
+
+                <input
+                    type="hidden"
+                    id="plan-id"
+                >
+
+                <div class="admin-form-grid">
+
+                    <label>
+                        Nome
+
+                        <input
+                            type="text"
+                            id="plan-name"
+                            maxlength="80"
+                            placeholder="Ex.: Prime"
+                        >
+                    </label>
+
+                    <label>
+                        Preço
+
+                        <input
+                            type="number"
+                            id="plan-price"
+                            min="0"
+                            step="0.01"
+                            placeholder="129.90"
+                        >
+                    </label>
+
+                    <label>
+                        Ordem
+
+                        <input
+                            type="number"
+                            id="plan-order"
+                            min="0"
+                            step="1"
+                            value="0"
+                        >
+                    </label>
+
+                    <label class="admin-checkbox">
+                        <input
+                            type="checkbox"
+                            id="plan-highlight"
+                        >
+
+                        Plano em destaque
+                    </label>
+
+                    <label class="admin-checkbox">
+                        <input
+                            type="checkbox"
+                            id="plan-active"
+                            checked
+                        >
+
+                        Plano ativo
+                    </label>
+
+                    <label class="admin-form-full">
+                        Descrição
+
+                        <textarea
+                            id="plan-description"
+                            rows="3"
+                            maxlength="500"
+                            placeholder="Descrição curta do plano"
+                        ></textarea>
+                    </label>
+
+                    <label class="admin-form-full">
+                        Benefícios
+
+                        <textarea
+                            id="plan-features"
+                            rows="5"
+                            placeholder="Digite um benefício por linha"
+                        ></textarea>
+                    </label>
+
+                </div>
+
+                <div class="admin-form-actions">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="plan-submit"
+                    >
+                        Salvar plano
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        id="plan-cancel"
+                        hidden
+                    >
+                        Cancelar edição
+                    </button>
+
+                </div>
+
+                <p
+                    class="admin-message"
+                    id="plans-message"
+                    role="status"
+                ></p>
+
+            </form>
+
+            <div class="table-wrapper admin-table-spacing">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Plano</th>
+                            <th>Preço</th>
+                            <th>Benefícios</th>
+                            <th>Destaque</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="plans-table-body"></tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+        <section
+            class="admin-panel"
+            id="leads"
+        >
+
+            <div class="admin-panel-heading">
+                <div>
+                    <p class="eyebrow">
+                        CONTATOS RECEBIDOS
+                    </p>
+
+                    <h2>Leads</h2>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    id="reload-leads"
+                >
+                    Atualizar
+                </button>
+            </div>
+
+            <p
+                class="admin-message"
+                id="leads-message"
+            ></p>
+
+            <div class="table-wrapper">
+
+                <table class="table admin-leads-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Contato</th>
+                            <th>Objetivo</th>
+                            <th>Mensagem</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="leads-table-body"></tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <template id="plan-row-template">
+        <tr>
+            <td>
+                <strong data-field="name"></strong>
+                <small data-field="description"></small>
+            </td>
+
+            <td data-field="price"></td>
+
+            <td>
+                <span
+                    class="plan-features-preview"
+                    data-field="features"
+                ></span>
+            </td>
+
+            <td data-field="highlight"></td>
+
+            <td data-field="active"></td>
+
+            <td>
+                <div class="table-actions">
+
+                    <button
+                        type="button"
+                        class="table-action"
+                        data-action="edit"
+                    >
+                        Editar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="table-action danger"
+                        data-action="disable"
+                    >
+                        Desativar
+                    </button>
+
+                </div>
+            </td>
+        </tr>
+    </template>
+
+    <template id="lead-row-template">
+        <tr>
+            <td>
+                <strong data-field="name"></strong>
+            </td>
+
+            <td>
+                <span data-field="phone"></span>
+                <small data-field="email"></small>
+            </td>
+
+            <td data-field="goal"></td>
+
+            <td>
+                <p
+                    class="lead-message"
+                    data-field="message"
+                ></p>
+            </td>
+
+            <td data-field="date"></td>
+
+            <td>
+                <select
+                    class="lead-status"
+                    data-field="status"
+                >
+                    <option value="new">Novo</option>
+                    <option value="contacted">Contatado</option>
+                    <option value="closed">Fechado</option>
+                </select>
+            </td>
+        </tr>
+    </template>
+
+    <script
+        type="module"
+        src="/js/admin/main.js"
+    ></script>
+
+</body>
+</html>

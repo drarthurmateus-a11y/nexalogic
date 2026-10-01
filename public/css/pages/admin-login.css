@@ -1,0 +1,134 @@
+.admin-login-page{
+    min-height:100vh;
+    background:var(--color-black);
+}
+
+.admin-login{
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    padding:30px 20px;
+}
+
+.admin-login-box{
+    width:min(100%,440px);
+    padding:38px;
+    background:var(--color-white);
+    border-top:5px solid var(--color-primary);
+}
+
+.admin-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:45px;
+    color:var(--color-dark);
+    font-family:var(--font-title);
+    font-size:24px;
+    font-weight:700;
+}
+
+.admin-brand .brand-mark{
+    color:var(--color-dark);
+}
+
+.admin-login-heading{
+    margin-bottom:30px;
+}
+
+.admin-login-heading h1{
+    margin-bottom:15px;
+    color:var(--color-dark);
+    font-size:52px;
+}
+
+.admin-login-heading p:not(.eyebrow){
+    color:var(--color-muted);
+}
+
+.admin-login-form{
+    display:grid;
+    gap:18px;
+}
+
+.admin-login-form label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+}
+
+.admin-login-form input{
+    width:100%;
+    height:48px;
+    margin-top:7px;
+    padding:0 13px;
+    border:1px solid var(--color-border);
+    background:#fafafa;
+    color:var(--color-text);
+    outline:none;
+    transition:var(--transition);
+}
+
+.admin-login-form input:focus{
+    border-color:var(--color-dark);
+}
+
+.admin-login-form small{
+    display:block;
+    min-height:17px;
+    margin-top:5px;
+    color:var(--color-danger);
+    font-size:12px;
+}
+
+.admin-login-form .btn{
+    width:100%;
+    margin-top:5px;
+}
+
+.admin-login-form .btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.admin-login-message{
+    display:none;
+    padding:12px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.admin-login-message.show{
+    display:block;
+}
+
+.admin-login-message.error{
+    background:#fff0f0;
+    color:#9c2525;
+}
+
+.admin-login-message.success{
+    background:#effbea;
+    color:#27651e;
+}
+
+.admin-back{
+    margin-top:28px;
+    display:inline-block;
+    color:var(--color-muted);
+    font-size:14px;
+}
+
+.admin-back:hover{
+    color:var(--color-dark);
+}
+
+@media(max-width:500px){
+    .admin-login-box{
+        padding:28px 22px;
+    }
+
+    .admin-login-heading h1{
+        font-size:44px;
+    }
+}

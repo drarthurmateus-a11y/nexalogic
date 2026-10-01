@@ -18,3 +18,29 @@ export async function createLead(data){
 
     return lead;
 }
+
+export async function getLeads(){
+    const {data,error}=await supabase
+        .from("leads")
+        .select(
+            "id,name,phone,email,goal,message,status,created_at"
+        )
+        .order("created_at",{ascending:false});
+
+    if(error)throw error;
+
+    return data;
+}
+
+export async function changeLeadStatus(id,status){
+    const {data,error}=await supabase
+        .from("leads")
+        .update({status})
+        .eq("id",id)
+        .select("id,status")
+        .maybeSingle();
+
+    if(error)throw error;
+
+    return data;
+}

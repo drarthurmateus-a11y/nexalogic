@@ -39,3 +39,16 @@ export function apiPost(url,data){
         body:JSON.stringify(data)
     });
 }
+
+export function apiPut(url,data){
+    return request(url,{
+        method:"PUT",
+        body:JSON.stringify(data)
+    });
+}
+
+export function apiDelete(url){
+    return request(url,{
+        method:"DELETE"
+    });
+}

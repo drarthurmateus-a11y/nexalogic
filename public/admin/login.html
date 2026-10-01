@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+
+    <title>Admin | Força Prime</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body class="admin-login-page">
+
+    <main class="admin-login">
+        <section class="admin-login-box">
+
+            <a href="/" class="admin-brand">
+                <span class="brand-mark">FP</span>
+
+                <span>
+                    FORÇA <strong>PRIME</strong>
+                </span>
+            </a>
+
+            <div class="admin-login-heading">
+                <p class="eyebrow">PAINEL ADMINISTRATIVO</p>
+
+                <h1>
+                    Acesso
+                    <em>restrito.</em>
+                </h1>
+
+                <p>
+                    Entre com sua conta administrativa.
+                </p>
+            </div>
+
+            <form id="admin-login-form" class="admin-login-form" novalidate>
+
+                <label>
+                    E-mail
+
+                    <input
+                        type="email"
+                        id="admin-email"
+                        name="email"
+                        autocomplete="username"
+                        placeholder="admin@email.com"
+                    >
+
+                    <small></small>
+                </label>
+
+                <label>
+                    Senha
+
+                    <input
+                        type="password"
+                        id="admin-password"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="Sua senha"
+                    >
+
+                    <small></small>
+                </label>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Entrar
+                </button>
+
+                <p
+                    class="admin-login-message"
+                    id="admin-login-message"
+                    role="status"
+                ></p>
+
+            </form>
+
+            <a href="/" class="admin-back">
+                ← Voltar para o site
+            </a>
+
+        </section>
+    </main>
+
+    <script
+        type="module"
+        src="/js/admin/auth.js"
+    ></script>
+
+</body>
+</html>
