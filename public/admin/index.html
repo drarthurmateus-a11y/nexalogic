@@ -40,6 +40,10 @@
                 Planos
             </a>
 
+            <a href="#enrollments">
+    Matrículas
+</a>
+
             <a href="#leads">
                 Leads
             </a>
@@ -102,6 +106,57 @@
             </article>
 
         </section>
+
+<section
+    class="admin-panel"
+    id="enrollments"
+>
+
+    <div class="admin-panel-heading">
+        <div>
+            <p class="eyebrow">
+                PRÉ-MATRÍCULAS
+            </p>
+
+            <h2>Matrículas</h2>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-outline"
+            id="reload-enrollments"
+        >
+            Atualizar
+        </button>
+    </div>
+
+    <p
+        class="admin-message"
+        id="enrollments-message"
+    ></p>
+
+    <div class="table-wrapper">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Contato</th>
+                    <th>Plano</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody
+                id="enrollments-table-body"
+            ></tbody>
+        </table>
+
+    </div>
+
+</section>
+
 
         <section
             class="admin-panel"
@@ -352,6 +407,42 @@
             </td>
         </tr>
     </template>
+
+<template id="enrollment-row-template">
+    <tr>
+        <td>
+            <strong data-field="name"></strong>
+        </td>
+
+        <td>
+            <span data-field="phone"></span>
+            <small data-field="email"></small>
+        </td>
+
+        <td data-field="plan"></td>
+
+        <td data-field="date"></td>
+
+        <td>
+            <select
+                class="lead-status"
+                data-field="status"
+            >
+                <option value="pending">
+                    Pendente
+                </option>
+
+                <option value="approved">
+                    Aprovada
+                </option>
+
+                <option value="cancelled">
+                    Cancelada
+                </option>
+            </select>
+        </td>
+    </tr>
+</template>
 
     <template id="lead-row-template">
         <tr>

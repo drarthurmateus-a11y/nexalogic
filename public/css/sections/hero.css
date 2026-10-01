@@ -1,38 +1,90 @@
-.table-wrapper{
-    width:100%;
-    overflow-x:auto;
-    border:1px solid var(--color-border);
-    background:var(--color-white);
+.hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.88) 0%,
+            rgba(0,0,0,.65) 45%,
+            rgba(0,0,0,.3) 100%
+        ),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+    color:var(--color-white);
 }
 
-.table{
-    width:100%;
-    border-collapse:collapse;
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        180deg,
+        rgba(0,0,0,.1),
+        rgba(0,0,0,.3)
+    );
 }
 
-.table th,
-.table td{
-    padding:14px 16px;
-    border-bottom:1px solid var(--color-border);
-    text-align:left;
-    white-space:nowrap;
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:760px;
+    padding-top:80px;
 }
 
-.table th{
-    background:var(--color-bg-soft);
-    font-family:var(--font-title);
-    font-size:16px;
-    text-transform:uppercase;
+.hero h1{
+    margin-bottom:20px;
+    font-size:clamp(60px,8vw,105px);
+    font-weight:800;
+    letter-spacing:-1px;
 }
 
-.table td{
+.hero-text{
+    max-width:600px;
+    margin-bottom:30px;
+    color:#e7e7e7;
+    font-size:19px;
+}
+
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+}
+
+.hero-note{
+    margin-top:25px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#d6d6d6;
     font-size:14px;
 }
 
-.table tbody tr:last-child td{
-    border-bottom:0;
+.status-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--color-success);
+    box-shadow:0 0 0 5px rgba(101,229,114,.12);
 }
 
-.table tbody tr:hover{
-    background:#fafafa;
+.hero-bottom{
+    position:absolute;
+    left:5%;
+    right:5%;
+    bottom:30px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    color:#bbb;
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.line{
+    height:1px;
+    flex:1;
+    background:rgba(255,255,255,.25);
 }

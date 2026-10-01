@@ -1,48 +1,155 @@
-export function initPlans(){
-    const modal=document.querySelector("#plan-modal");
-    const title=document.querySelector("#selected-plan");
-    const whatsapp=document.querySelector("#plan-whatsapp");
-    const close=modal?.querySelector(".plan-close");
-    const buttons=document.querySelectorAll(".plan-select");
+import {apiGet} from "../shared/api.js";
+import {openEnrollment} from "./enrollments.js";
+const grid=document.querySelector("#plans-grid");
+const message=document.querySelector("#plans-message");
+const template=document.querySelector("#plan-card-template");
 
-    if(!modal||!title||!whatsapp||!buttons.length)return;
+function formatOrder(index){
+    return String(index+1).padStart(2,"0");
+}
 
-    const phone="5521999990000";
+function splitPrice(value){
+    const number=Number(value)||0;
+    const formatted=number.toFixed(2);
+    const [main,cents]=formatted.split(".");
 
-    const openModal=button=>{
-        const plan=button.dataset.plan;
-
-        if(!plan)return;
-
-        const message=`Olá! Tenho interesse no ${plan} da Força Prime. Gostaria de mais informações.`;
-
-        title.textContent=plan;
-        whatsapp.href=`https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-        modal.classList.add("show");
-        modal.setAttribute("aria-hidden","false");
-        document.body.classList.add("modal-open");
+    return{
+        main,
+        cents:`,${cents}`
     };
+}
 
-    const closeModal=()=>{
-        modal.classList.remove("show");
-        modal.setAttribute("aria-hidden","true");
-        document.body.classList.remove("modal-open");
-    };
+function createFeature(text){
+    const item=document.createElement("li");
+    item.textContent=text;
 
-    buttons.forEach(button=>{
-        button.addEventListener("click",()=>openModal(button));
-    });
+    return item;
+}
 
-    close?.addEventListener("click",closeModal);
 
-    modal.addEventListener("click",event=>{
-        if(event.target===modal)closeModal();
-    });
+function createPlanCard(plan,index){
+    const fragment=
+        template.content.cloneNode(true);
 
-    document.addEventListener("keydown",event=>{
-        if(event.key==="Escape"&&modal.classList.contains("show")){
-            closeModal();
+    const card=fragment.querySelector(".plan");
+
+    const tag=fragment.querySelector(
+        '[data-field="tag"]'
+    );
+
+    const number=fragment.querySelector(
+        '[data-field="number"]'
+    );
+
+    const name=fragment.querySelector(
+        '[data-field="name"]'
+    );
+
+    const description=fragment.querySelector(
+        '[data-field="description"]'
+    );
+
+    const priceMain=fragment.querySelector(
+        '[data-field="price-main"]'
+    );
+
+    const priceCents=fragment.querySelector(
+        '[data-field="price-cents"]'
+    );
+
+    const features=fragment.querySelector(
+        '[data-field="features"]'
+    );
+
+    const button=fragment.querySelector(
+        '[data-action="select"]'
+    );
+
+    if(plan.highlight){
+        card.classList.add("plan-featured");
+
+        tag.hidden=false;
+
+        button.classList.remove("btn-outline");
+        button.classList.add("btn-primary");
+    }
+
+    number.textContent=formatOrder(index);
+    name.textContent=plan.name;
+    description.textContent=plan.description||"";
+
+    const price=splitPrice(plan.price);
+
+    priceMain.textContent=price.main;
+    priceCents.textContent=price.cents;
+
+    if(Array.isArray(plan.features)){
+        plan.features.forEach(feature=>{
+            features.append(
+                createFeature(feature)
+            );
+        });
+    }
+
+    button.dataset.planId=plan.id;
+
+   button.addEventListener(
+    "click",
+    ()=>openEnrollment(plan)
+);
+
+    return fragment;
+}
+
+async function loadPlans(){
+    if(!grid||!template)return;
+
+    grid.textContent="";
+
+    if(message){
+        message.textContent="Carregando planos...";
+        message.classList.remove("error");
+    }
+
+    try{
+        const response=
+            await apiGet("/api/public/plans");
+
+        const plans=response.plans||[];
+
+        if(!plans.length){
+            if(message){
+                message.textContent=
+                    "Nenhum plano disponivel no momento.";
+            }
+
+            return;
         }
-    });
+
+        plans.forEach((plan,index)=>{
+            grid.append(
+                createPlanCard(plan,index)
+            );
+        });
+
+        if(message){
+            message.textContent="";
+        }
+
+    }catch(error){
+        if(message){
+            message.textContent=
+                "Nao foi possivel carregar os planos.";
+
+            message.classList.add("error");
+        }
+
+        console.error(
+            "Erro ao carregar planos:",
+            error.message
+        );
+    }
+}
+export function initPlans(){
+    loadPlans();
 }

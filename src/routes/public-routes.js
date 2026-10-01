@@ -1,6 +1,8 @@
 import {Router} from "express";
 import {supabase} from "../config/supabase.js";
 import {storeLead} from "../controllers/lead-controller.js";
+import {listPublicPlans} from "../controllers/plan-controller.js";
+import {storeEnrollment} from "../controllers/enrollment-controller.js";
 
 const router=Router();
 
@@ -25,5 +27,8 @@ router.get("/health",async(req,res)=>{
 });
 
 router.post("/leads",storeLead);
+router.get("/public/plans",listPublicPlans);
+router.post("/enrollments",storeEnrollment);
+
 
 export default router;

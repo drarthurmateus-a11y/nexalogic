@@ -68,3 +68,15 @@ export async function disablePlan(id){
 
     return plan;
 }
+export async function getActivePlans(){
+    const {data,error}=await supabase
+        .from("plans")
+        .select(fields)
+        .eq("active",true)
+        .order("sort_order",{ascending:true})
+        .order("created_at",{ascending:true});
+
+    if(error)throw error;
+
+    return data;
+}

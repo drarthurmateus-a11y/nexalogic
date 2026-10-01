@@ -105,3 +105,104 @@ export function validatePlan(data={}){
         }
     };
 }
+
+export function validateEnrollment(data={}){
+    const name=cleanText(data.name);
+    const phone=cleanText(data.phone);
+    const email=cleanText(data.email).toLowerCase();
+    const planId=cleanText(data.plan_id);
+
+    const errors={};
+    const phoneNumbers=onlyNumbers(phone);
+
+    if(name.length<2||name.length>100){
+        errors.name="Nome invalido.";
+    }
+
+    if(phoneNumbers.length<10||phoneNumbers.length>11){
+        errors.phone="Telefone invalido.";
+    }
+
+    if(!isValidEmail(email)||email.length>150){
+        errors.email="Email invalido.";
+    }
+
+    if(!isValidUuid(planId)){
+        errors.plan_id="Plano invalido.";
+    }
+
+    return{
+        valid:Object.keys(errors).length===0,
+        errors,
+        data:{
+            name,
+            phone,
+            email,
+            plan_id:planId
+        }
+    };
+}
+export const contentTypes=[
+    "modality",
+    "professional",
+    "gallery",
+    "testimonial",
+    "faq"
+];
+
+export function validateContent(data={}){
+    const type=cleanText(data.type);
+    const title=cleanText(data.title);
+    const subtitle=cleanText(data.subtitle);
+    const description=cleanText(data.description);
+    const imageUrl=cleanText(data.image_url);
+
+    const sortOrder=Number(data.sort_order);
+    const active=data.active!==false;
+
+    const errors={};
+
+    if(!contentTypes.includes(type)){
+        errors.type="Tipo de conteudo invalido.";
+    }
+
+    if(title.length<2||title.length>150){
+        errors.title="Titulo invalido.";
+    }
+
+    if(subtitle.length>150){
+        errors.subtitle="Subtitulo muito longo.";
+    }
+
+    if(description.length>1500){
+        errors.description="Descricao muito longa.";
+    }
+
+    if(imageUrl.length>1000){
+        errors.image_url="URL da imagem invalida.";
+    }
+
+    if(!Number.isInteger(sortOrder)||sortOrder<0||sortOrder>9999){
+        errors.sort_order="Ordem invalida.";
+    }
+
+    return{
+        valid:Object.keys(errors).length===0,
+        errors,
+        data:{
+            type,
+            title,
+            subtitle:subtitle||null,
+            description:description||null,
+            image_url:imageUrl||null,
+            extra_data:
+                typeof data.extra_data==="object"&&
+                data.extra_data!==null&&
+                !Array.isArray(data.extra_data)
+                    ?data.extra_data
+                    :{},
+            active,
+            sort_order:sortOrder
+        }
+    };
+}

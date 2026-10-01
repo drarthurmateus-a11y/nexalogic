@@ -13,6 +13,13 @@ import {
     removePlan
 } from "../controllers/plan-controller.js";
 
+import {
+    listEnrollments,
+    updateEnrollmentStatus
+} from "../controllers/enrollment-controller.js";
+
+
+
 const router=Router();
 
 router.use(requireAdmin);
@@ -24,5 +31,12 @@ router.get("/plans",listPlans);
 router.post("/plans",storePlan);
 router.put("/plans/:id",editPlan);
 router.delete("/plans/:id",removePlan);
+
+router.get("/enrollments",listEnrollments);
+
+router.put(
+    "/enrollments/:id/status",
+    updateEnrollmentStatus
+);
 
 export default router;

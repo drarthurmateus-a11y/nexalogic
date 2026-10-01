@@ -468,115 +468,79 @@
 
         <!-- planos -->
 
-        <section class="plans section" id="planos">
-            <div class="container">
+       <section class="plans section" id="planos">
+    <div class="container">
 
-                <div class="section-heading centered reveal">
-                    <p class="eyebrow">PLANOS</p>
+        <div class="section-heading centered reveal">
+            <p class="eyebrow">PLANOS</p>
 
-                    <h2>
-                        Escolha o que faz sentido<br>
-                        <em>para você.</em>
-                    </h2>
-                </div>
+            <h2>
+                Escolha o que faz sentido<br>
+                <em>para você.</em>
+            </h2>
+        </div>
 
-                <div class="plans-grid">
+        <p
+            class="plans-message"
+            id="plans-message"
+            role="status"
+        >
+            Carregando planos...
+        </p>
 
-                    <article class="plan reveal">
-                        <p class="plan-number">01</p>
+        <div
+            class="plans-grid"
+            id="plans-grid"
+        ></div>
 
-                        <h3>Start</h3>
+    </div>
+</section>
 
-                        <p class="plan-description">
-                            Para começar a colocar o treino na rotina.
-                        </p>
+<template id="plan-card-template">
+    <article class="plan">
 
-                        <div class="price">
-                            <small>R$</small>
-                            89
-                            <sup>,90</sup>
-                            <span>/mês</span>
-                        </div>
+        <p
+            class="plan-tag"
+            data-field="tag"
+            hidden
+        >
+            MAIS COMPLETO
+        </p>
 
-                        <ul>
-                            <li>Musculação</li>
-                            <li>Área cardio</li>
-                            <li>Avaliação inicial</li>
-                        </ul>
+        <p
+            class="plan-number"
+            data-field="number"
+        ></p>
 
-                        <button
-                            class="btn btn-outline plan-select"
-                            data-plan="Plano Start"
-                        >
-                            Escolher plano
-                        </button>
-                    </article>
+        <h3 data-field="name"></h3>
 
-                    <article class="plan plan-featured reveal">
-                        <p class="plan-tag">MAIS COMPLETO</p>
-                        <p class="plan-number">02</p>
+        <p
+            class="plan-description"
+            data-field="description"
+        ></p>
 
-                        <h3>Prime</h3>
+        <div class="price">
+            <small>R$</small>
 
-                        <p class="plan-description">
-                            Mais possibilidades para uma rotina completa.
-                        </p>
+            <span data-field="price-main"></span>
 
-                        <div class="price">
-                            <small>R$</small>
-                            129
-                            <sup>,90</sup>
-                            <span>/mês</span>
-                        </div>
+            <sup data-field="price-cents"></sup>
 
-                        <ul>
-                            <li>Musculação</li>
-                            <li>Cardio</li>
-                            <li>Funcional</li>
-                            <li>Avaliação física</li>
-                        </ul>
+            <span>/mês</span>
+        </div>
 
-                        <button
-                            class="btn btn-primary plan-select"
-                            data-plan="Plano Prime"
-                        >
-                            Escolher plano
-                        </button>
-                    </article>
+        <ul data-field="features"></ul>
 
-                    <article class="plan reveal">
-                        <p class="plan-number">03</p>
+        <button
+            class="btn btn-outline plan-select"
+            type="button"
+            data-action="select"
+        >
+            Escolher plano
+        </button>
 
-                        <h3>Performance</h3>
-
-                        <p class="plan-description">
-                            Para quem quer acompanhamento mais próximo.
-                        </p>
-
-                        <div class="price">
-                            <small>R$</small>
-                            179
-                            <sup>,90</sup>
-                            <span>/mês</span>
-                        </div>
-
-                        <ul>
-                            <li>Todos os benefícios</li>
-                            <li>Personal</li>
-                            <li>Acompanhamento individual</li>
-                        </ul>
-
-                        <button
-                            class="btn btn-outline plan-select"
-                            data-plan="Plano Performance"
-                        >
-                            Escolher plano
-                        </button>
-                    </article>
-
-                </div>
-            </div>
-        </section>
+    </article>
+</template>
 
         <!-- calculadoras -->
 
@@ -1130,44 +1094,102 @@
 
     <!-- modal plano -->
 
-    <div
-        class="plan-modal"
-        id="plan-modal"
-        aria-hidden="true"
-    >
-        <div class="plan-modal-box">
+    <!-- modal matricula -->
+
+<div
+    class="plan-modal"
+    id="plan-modal"
+    aria-hidden="true"
+>
+    <div class="plan-modal-box">
+
+        <button
+            class="modal-close plan-close"
+            type="button"
+            aria-label="Fechar"
+        >
+            ×
+        </button>
+
+        <p class="eyebrow">
+            PRÉ-MATRÍCULA
+        </p>
+
+        <h2 id="selected-plan">
+            Plano
+        </h2>
+
+        <p>
+            Preencha seus dados. A equipe entrará
+            em contato para concluir a matrícula.
+        </p>
+
+        <form
+            class="enrollment-form"
+            id="enrollment-form"
+            novalidate
+        >
+
+            <input
+                type="hidden"
+                id="enrollment-plan-id"
+            >
+
+            <label>
+                Nome
+
+                <input
+                    type="text"
+                    id="enrollment-name"
+                    maxlength="100"
+                    placeholder="Seu nome"
+                >
+
+                <small></small>
+            </label>
+
+            <label>
+                Telefone
+
+                <input
+                    type="tel"
+                    id="enrollment-phone"
+                    placeholder="(21) 99999-9999"
+                >
+
+                <small></small>
+            </label>
+
+            <label>
+                E-mail
+
+                <input
+                    type="email"
+                    id="enrollment-email"
+                    maxlength="150"
+                    placeholder="voce@email.com"
+                >
+
+                <small></small>
+            </label>
 
             <button
-                class="modal-close plan-close"
-                type="button"
-                aria-label="Fechar"
+                class="btn btn-primary"
+                type="submit"
             >
-                ×
+                Enviar pré-matrícula
             </button>
 
-            <p class="eyebrow">MATRÍCULA</p>
+            <p
+                class="enrollment-message"
+                id="enrollment-message"
+                role="status"
+            ></p>
 
-            <h2 id="selected-plan">
-                Plano Prime
-            </h2>
+        </form>
 
-            <p>
-                Você selecionou este plano.
-                Entre em contato para confirmar valores,
-                horários e disponibilidade.
-            </p>
-
-            <a
-                class="btn btn-primary"
-                id="plan-whatsapp"
-                target="_blank"
-                rel="noopener"
-            >
-                Continuar pelo WhatsApp →
-            </a>
-
-        </div>
     </div>
+</div>
 
     <script
         type="module"

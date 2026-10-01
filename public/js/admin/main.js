@@ -6,7 +6,12 @@ import {
 import {loadLeads} from "./leads.js";
 import {updateDashboard} from "./dashboard.js";
 import {initPlansAdmin} from "./plans.js";
+import {loadEnrollments} from "./enrollments.js";
 
+const reloadEnrollments=
+    document.querySelector(
+        "#reload-enrollments"
+    );
 const adminName=
     document.querySelector("#admin-name");
 
@@ -56,6 +61,10 @@ async function init(){
             error.message
         );
     }
+    reloadEnrollments?.addEventListener(
+    "click",
+    loadEnrollments
+);
 }
 
 logout?.addEventListener("click",async()=>{

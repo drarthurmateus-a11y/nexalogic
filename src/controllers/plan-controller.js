@@ -1,5 +1,6 @@
 import {
     getPlans,
+    getActivePlans,
     createPlan,
     updatePlan,
     disablePlan
@@ -151,6 +152,27 @@ export async function removePlan(req,res){
         return res.status(500).json({
             success:false,
             message:"Nao foi possivel desativar o plano."
+        });
+    }
+}
+export async function listPublicPlans(req,res){
+    try{
+        const plans=await getActivePlans();
+
+        return res.json({
+            success:true,
+            plans
+        });
+
+    }catch(error){
+        console.error(
+            "Erro ao buscar planos publicos:",
+            error.message
+        );
+
+        return res.status(500).json({
+            success:false,
+            message:"Nao foi possivel carregar os planos."
         });
     }
 }

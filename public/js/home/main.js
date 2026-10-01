@@ -5,11 +5,13 @@ import {initPlans} from "./plans.js";
 import {initCalculators} from "./calculators.js";
 import {initTestimonials} from "./testimonials.js";
 import {initContact} from "./contact.js";
-
+import {initEnrollments} from "./enrollments.js";
 function init(){
+    
     initNavigation();
     initEffects();
     initGallery();
+    initEnrollments();
     initPlans();
     initCalculators();
     initTestimonials();
