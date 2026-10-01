@@ -9,6 +9,9 @@ import {
 import {
     showSettings
 } from "../controllers/settings-controller.js";
+import {
+    publicFormLimiter
+} from "../middleware/rate-limit.js";
 
 const router=Router();
 
@@ -32,9 +35,17 @@ router.get("/health",async(req,res)=>{
     });
 });
 
-router.post("/leads",storeLead);
+router.post(
+    "/leads",
+    publicFormLimiter,
+    storeLead
+);
 router.get("/public/plans",listPublicPlans);
-router.post("/enrollments",storeEnrollment);
+router.post(
+    "/enrollments",
+    publicFormLimiter,
+    storeEnrollment
+);
 router.get(
     "/public/content",
     listPublicContent

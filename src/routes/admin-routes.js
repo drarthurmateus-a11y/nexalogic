@@ -38,7 +38,9 @@ import {
 
 } from "../middleware/upload.js";
 
-
+import {
+    uploadLimiter
+} from "../middleware/rate-limit.js";
 
 const router=Router();
 
@@ -74,6 +76,7 @@ router.put(
 
 router.post(
     "/upload",
+    uploadLimiter,
     uploadImageFile,
     storeImage
 );
